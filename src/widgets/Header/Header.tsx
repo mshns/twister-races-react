@@ -1,13 +1,11 @@
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Toolbar } from '@mui/material';
+import { Logo } from './components';
 
 export const Header: FC = () => {
-  const { t } = useTranslation();
-
   return (
-    <Toolbar component="header"  sx={{ backgroundColor: 'primary.main' }}>
-      {t('Leaderboard')}
+    <Toolbar component='header' sx={{ backgroundColor: 'background.paper'}}>
+      <Logo />
     </Toolbar>
   );
 };

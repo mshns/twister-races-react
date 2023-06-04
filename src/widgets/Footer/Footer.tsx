@@ -8,7 +8,7 @@ export const Footer: FC = () => {
   return (
     <Toolbar
       component='footer'
-      sx={{ backgroundColor: 'primary.main', mt: 'auto' }}
+      sx={{ backgroundColor: 'background.paper', mt: 'auto' }}
     >
       {t('Leaderboard')}
     </Toolbar>
