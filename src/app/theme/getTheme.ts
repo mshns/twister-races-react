@@ -6,30 +6,41 @@ export const getTheme = (mode: PaletteMode) => ({
     ...(mode === 'light'
       ? {
           primary: {
-            main: '#66bb6a',
-            contrastText: '#FFF',
+            main: '#cc4800',
+            contrastText: '#fff',
           },
-          divider: '#000',
+          secondary: {
+            main: '#cc4800',
+            contrastText: '#fff',
+          },
           background: {
-            default: '#e0e4ea',
+            default: '#eceeeb',
             paper: '#d1d5dc',
           },
           text: {
-            primary: '#0d0d4c',
-            secondary: '#66bb6a',
+            primary: '#1c1c1c',
+            secondary: '#fff',
           },
+          divider: '#000',
         }
       : {
-          // palette values for dark mode
-          divider: '#000',
+          primary: {
+            main: '#cc4800',
+            contrastText: '#fff',
+          },
+          secondary: {
+            main: '#cc4800',
+            contrastText: '#fff',
+          },
           background: {
-            default: '#000',
-            paper: '#000',
+            default: '#eceeeb',
+            paper: '#d1d5dc',
           },
           text: {
-            primary: '#fff',
-            secondary: '#000',
+            primary: '#1c1c1c',
+            secondary: '#fff',
           },
+          divider: '#000',
         }),
   },
   typography: {

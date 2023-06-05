@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-export const Login: FC = () => {
+export const Registration: FC = () => {
 
   return <div>Login Page</div>;
 };

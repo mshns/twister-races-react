@@ -6,6 +6,6 @@ export const LogoTitle = styled('h1')(({ theme }) => ({
   fontFamily: 'Russo One',
   fontSize: 22,
   fontWeight: 400,
-  textTransform: 'lowercase',
-  color: theme.palette.secondary.main,
+  color: theme.palette.primary.main,
+  transition: 'ease-in-out 0.3s'
 }));

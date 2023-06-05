@@ -11,13 +11,13 @@ export const Logo: FC = () => {
   const { t } = useTranslation();
 
   return (
-    <Link href='/' sx={{ textDecoration: 'none' }}>
+    <Link href='' sx={{ textDecoration: 'none' }}>
       <LogoWrapper>
         <SvgIcon
           viewBox='0 0 128 128'
           sx={{
             position: 'absolute',
-            top: 0,
+            top: -4,
             left: 0,
             width: 56,
             height: 56,
@@ -32,10 +32,10 @@ export const Logo: FC = () => {
           sx={{
             position: 'relative',
             mt: -1,
-            color: 'white',
+            color: 'primary.contrastText',
             fontSize: 14,
             textTransform: 'uppercase',
-            letterSpacing: 2,
+            letterSpacing: 6,
           }}
         >
           {t('Leaderboard')}

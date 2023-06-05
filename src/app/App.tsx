@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme, PaletteMode } from '@mui/material';
 
 import { Layout } from './Layout/Layout';
-import { Leaderboard, Login } from '../pages';
+import { Leaderboard, Login, Prizes, Registration } from '../pages';
 import { ColorModeContext } from './theme/colorModeContext';
 import { getTheme } from './theme/getTheme';
 
@@ -30,6 +30,8 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<Leaderboard />} />
+            <Route path='registration' element={<Registration />} />
+            <Route path='prizes' element={<Prizes />} />
             <Route path='login' element={<Login />} />
           </Route>
         </Routes>

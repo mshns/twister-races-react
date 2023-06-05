@@ -11,7 +11,6 @@ export const Layout = () => {
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'background.default',
-        color: 'text.primary'
       }}
     >
       <Header />
