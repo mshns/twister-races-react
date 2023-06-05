@@ -1,4 +1,10 @@
 {
   "storo08 Twister Races": "storo08 Twister Races",
-  "Leaderboard": "Лидерборд"
+  "Leaderboard": "Лидерборд",
+
+  "English": "English language",
+  "Russian": "Русский язык",
+
+  "Light mode": "Светлая тема",
+  "Dark mode": "Тёмная тема"
 }

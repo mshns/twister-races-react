@@ -33,8 +33,8 @@ export const getTheme = (mode: PaletteMode) => ({
             contrastText: '#fff',
           },
           background: {
-            default: '#eceeeb',
-            paper: '#d1d5dc',
+            default: '#000',
+            paper: '#000',
           },
           text: {
             primary: '#1c1c1c',
