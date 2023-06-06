@@ -1,11 +1,12 @@
 import { styled } from '@mui/material';
 
-export const LogoTitle = styled('h1')(({ theme }) => ({
-  position: 'relative',
-  margin: 0,
+export const LogoTitle = styled('h2')(({ theme }) => ({
   fontFamily: 'Russo One',
-  fontSize: 22,
   fontWeight: 400,
   color: theme.palette.primary.main,
-  transition: 'ease-in-out 0.3s'
+  margin: 0,
+  lineHeight: .9,
+  letterSpacing: 1.1,
+  transform: 'skew(-10deg)',
+  transition: 'ease-in-out 0.25s',
 }));

@@ -1,46 +1,22 @@
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link, SvgIcon, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import SportsScoreIcon from '@mui/icons-material/SportsScore';
 
-import { ReactComponent as FinishIcon } from './assets/finish.svg';
-
-import { LogoWrapper } from './styled/LogoWrapper.styled';
-import { LogoTitle } from './styled/LogoTitle.styled';
+import { LogoIcon, LogoTitle, LogoWrapper } from './styled';
 
 export const Logo: FC = () => {
-  const { t } = useTranslation();
-
   return (
-    <Link href='' sx={{ textDecoration: 'none' }}>
-      <LogoWrapper>
-        <SvgIcon
-          viewBox='0 0 128 128'
-          sx={{
-            position: 'absolute',
-            top: -4,
-            left: 0,
-            width: 56,
-            height: 56,
-            zIndex: 2000,
-          }}
-        >
-          <FinishIcon />
-        </SvgIcon>
-        <LogoTitle>{t('storo08 Twister Races')}</LogoTitle>
-        <Typography
-          component='h2'
-          sx={{
-            position: 'relative',
-            mt: -1,
-            color: 'primary.contrastText',
-            fontSize: 14,
-            textTransform: 'uppercase',
-            letterSpacing: 6,
-          }}
-        >
-          {t('Leaderboard')}
-        </Typography>
-      </LogoWrapper>
-    </Link>
+    <LogoWrapper href='/'>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <LogoIcon variant='rounded'>
+          <SportsScoreIcon />
+        </LogoIcon>
+        <LogoTitle sx={{ fontSize: 32 }}>storo08</LogoTitle>
+      </Box>
+      <Box sx={{ display: 'flex', textTransform: 'uppercase' }}>
+        <LogoTitle sx={{ fontSize: 24, marginLeft: '5px' }}>Twister</LogoTitle>
+        <LogoTitle sx={{ fontSize: 18, marginLeft: '5px' }}>Races</LogoTitle>
+      </Box>
+    </LogoWrapper>
   );
 };

@@ -26,7 +26,10 @@ export const Settings: FC = () => {
 
   return (
     <ButtonGroup>
-      <Tooltip title={i18n.language === 'ru' ? t('English') : t('Russian')}>
+      <Tooltip
+        placement='left'
+        title={i18n.language === 'ru' ? t('English') : t('Russian')}
+      >
         <IconButton
           onClick={handleChangeLanguage}
           sx={{ color: 'primary.main' }}
@@ -34,8 +37,9 @@ export const Settings: FC = () => {
           <LanguageIcon />
         </IconButton>
       </Tooltip>
-      
+
       <Tooltip
+        placement='bottom-start'
         title={
           theme.palette.mode === 'light' ? t('Dark mode') : t('Light mode')
         }

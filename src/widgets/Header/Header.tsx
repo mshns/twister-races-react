@@ -5,7 +5,13 @@ import { Logo, Navigation, Settings } from './components';
 
 export const Header: FC = () => {
   return (
-    <Toolbar component='header' sx={{ backgroundColor: 'background.paper', justifyContent: 'space-between' }}>
+    <Toolbar
+      component='header'
+      sx={{
+        backgroundColor: 'background.paper',
+        justifyContent: 'space-between',
+      }}
+    >
       <Logo />
       <Navigation />
       <Settings />
