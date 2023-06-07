@@ -7,7 +7,7 @@ export const Layout = () => {
   return (
     <Box
       sx={{
-        height: '100vh',
+        minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'background.default',

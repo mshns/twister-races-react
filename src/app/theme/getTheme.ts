@@ -19,9 +19,9 @@ export const getTheme = (mode: PaletteMode) => ({
           },
           text: {
             primary: '#1c1c1c',
-            secondary: '#fff',
+            secondary: '#505050',
           },
-          divider: '#000',
+          divider: '#bbb',
         }
       : {
           primary: {
