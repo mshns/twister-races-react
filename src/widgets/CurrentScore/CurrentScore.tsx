@@ -1,14 +1,17 @@
 import { FC, useEffect, useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { IParticipant, IPlayer, IRaceTime } from 'shared';
-import { CurrentTimeTable } from 'widgets';
+import { CurrentTimeTable, Spinner } from 'widgets';
+import { CurrentScoreTable } from 'features';
 
 export const CurrentScore: FC = () => {
   const [playerList, setPlayerList] = useState<string[]>([]);
   const [raceTime, setRaceTime] = useState<IRaceTime>();
   const [participantList, setParticipantList] = useState<IParticipant[]>([]);
+  const [isFetching, setFetching] = useState(false);
 
   useEffect(() => {
+    setFetching(true);
     Promise.all([
       fetch('https://twister-races.onrender.com/players')
         .then((response) => response.json())
@@ -63,19 +66,24 @@ export const CurrentScore: FC = () => {
         setPlayerList(playerList);
         setRaceTime({ update: updateTime, start: startRace, end: endRace });
         setParticipantList(participantList);
+        setFetching(false);
       }
     );
   }, []);
 
   return (
     <Box>
-      {raceTime && <CurrentTimeTable time={raceTime} />}
-
-      {participantList.map((player) => (
-        <Typography key={player.position}>
-          {player.position} - {player.nickname} - {player.points}
-        </Typography>
-      ))}
+      {isFetching ? (
+        <Spinner />
+      ) : (
+        <>
+          <CurrentTimeTable time={raceTime} />
+          <CurrentScoreTable
+            playersAll={participantList}
+            playersStoro={playerList}
+          />
+        </>
+      )}
     </Box>
   );
 };

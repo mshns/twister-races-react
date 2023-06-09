@@ -1,76 +1,55 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, Divider, Paper, Typography } from '@mui/material';
+import { Box, Divider, Paper, Tooltip, Typography } from '@mui/material';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import EventBusyIcon from '@mui/icons-material/EventBusy';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 
 import { IRaceTime, useLocalDate, useLocalTime } from 'shared';
+import { TimeLineWrapper } from './styled';
 
-export const CurrentTimeTable: FC<{ time: IRaceTime }> = ({ time }) => {
+interface ICurrentTimeTable {
+  time: IRaceTime | undefined;
+}
+
+export const CurrentTimeTable: FC<ICurrentTimeTable> = ({ time }) => {
   const { t } = useTranslation(['leaderboard']);
+
   return (
-    <Paper sx={{ bgcolor: 'background.default'}}>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          p: 1,
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-          }}
-        >
-          <EventAvailableIcon />
+    <Paper sx={{ bgcolor: 'background.default' }}>
+      <TimeLineWrapper>
+        <Box sx={{ display: 'flex' }}>
+          <Tooltip title={t('Race start')}>
+            <EventAvailableIcon />
+          </Tooltip>
           <Typography sx={{ ml: 1 }}>{t('Race start')}</Typography>
         </Box>
-        <Typography>{useLocalDate(time.start)}</Typography>
-      </Box>
+        <Typography>{useLocalDate(time?.start)}</Typography>
+      </TimeLineWrapper>
 
       <Divider />
 
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          p: 1,
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-          }}
-        >
-          <EventBusyIcon />
+      <TimeLineWrapper>
+        <Box sx={{ display: 'flex' }}>
+          <Tooltip title={t('Race finish')}>
+            <EventBusyIcon />
+          </Tooltip>
           <Typography sx={{ ml: 1 }}>{t('Race finish')}</Typography>
         </Box>
-        <Typography>{useLocalDate(time.end.slice(0, 10))}</Typography>
-      </Box>
+        <Typography>{useLocalDate(time?.end.slice(0, 10))}</Typography>
+      </TimeLineWrapper>
 
       <Divider />
 
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          p: 1,
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-          }}
-        >
-          <EventRepeatIcon />
+      <TimeLineWrapper>
+        <Box sx={{ display: 'flex' }}>
+          <Tooltip title={t('Updated')}>
+            <EventRepeatIcon />
+          </Tooltip>
           <Typography sx={{ ml: 1 }}>{t('Updated')}</Typography>
         </Box>
-        <Typography>{useLocalTime(time.update)}</Typography>
-      </Box>
+        <Typography>{useLocalTime(time?.update)}</Typography>
+      </TimeLineWrapper>
     </Paper>
   );
 };

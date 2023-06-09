@@ -5,5 +5,19 @@
   "Race start": "Race start",
   "Race finish": "Race finish",
   "Updated": "Updated",
-  "at": "at"
+  "at": "at",
+
+  "Network race": "Network race",
+
+  "Rows per page": "Rows",
+  "All": "All",
+  "of": "of",
+
+  "Place": "Place",
+  "Player": "Player",
+  "Prize": "Prize",
+  "Points": "Points",
+
+  "Loading...": "Loading...",
+  "Please wait...": "Please wait..."
 }

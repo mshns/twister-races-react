@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
-export const useLocalDate = (time: string) => {
+export const useLocalDate = (time: string | undefined) => {
   const { i18n } = useTranslation();
 
-  const usefulDate = new Date(time);
+  const usefulDate = time ? new Date(time) : new Date();
 
   const localDate = usefulDate.toLocaleDateString(i18n.language, {
     month: 'long',

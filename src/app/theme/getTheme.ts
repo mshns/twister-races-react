@@ -17,6 +17,9 @@ export const getTheme = (mode: PaletteMode) => ({
             default: '#eceeeb',
             paper: '#d1d5dc',
           },
+          success: {
+            main: '#31C39750',
+          },
           text: {
             primary: '#1c1c1c',
             secondary: '#505050',

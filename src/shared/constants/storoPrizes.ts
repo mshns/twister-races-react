@@ -1,0 +1,18 @@
+export const STORO_PRIZES = {
+  step1: '1x Twister €50 + 6x Twister €20',
+  step2: '6x Twister €20',
+  step3: '5x Twister €20',
+  step4: '4x Twister €20',
+  step5: '3x Twister €20',
+  step6: '5x Twister €10',
+  step7: '4x Twister €10',
+  step8: '7x Twister €5',
+  step9: '6x Twister €5',
+  step10: '5x Twister €5',
+  step11: '4x Twister €5',
+  step12: '3x Twister €5',
+  step13: '2x Twister €5',
+  step14: '1x Twister €5',
+  bonus50: '1x Twister €50',
+  bonus100: '2x Twister €50',
+};
