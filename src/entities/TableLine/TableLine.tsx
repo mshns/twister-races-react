@@ -1,49 +1,33 @@
 import { FC } from 'react';
-import { Avatar, Badge, Box, Typography } from '@mui/material';
-import { IParticipant, usePrize } from 'shared';
+import { Avatar, Badge, Box, Paper, Typography } from '@mui/material';
+import { IPlayer } from 'shared';
 import { TableLineWrapper } from './styled';
+import { PrizeAndBonusBox } from 'entities';
 
 interface ITableLine {
-  player: IParticipant;
-  position: number;
-  isNetworkRace: boolean;
-  isAffiliate: boolean;
-  index: number;
+  player: IPlayer;
 }
 
-export const TableLine: FC<ITableLine> = ({
-  player,
-  position,
-  isNetworkRace,
-  isAffiliate,
-  index,
-}) => (
-  <TableLineWrapper
-    isAffiliate={isAffiliate}
-    isNetworkRace={isNetworkRace}
-    index={index}
-  >
+export const TableLine: FC<ITableLine> = ({ player }) => (
+  <TableLineWrapper player={player}>
     <Box sx={{ width: '40%', display: 'flex', alignItems: 'center' }}>
       <Badge
         overlap='circular'
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         badgeContent={
-          (!isNetworkRace && position === 1) ||
-          (isNetworkRace && player.position === '1') ? (
+          player.position === 1 ? (
             <Avatar
               sx={{ width: 40, height: 40 }}
               alt='first place medal'
               src='assets/1st-place-medal.png'
             />
-          ) : (!isNetworkRace && position === 2) ||
-            (isNetworkRace && player.position === '2') ? (
+          ) : player.position === 2 ? (
             <Avatar
               sx={{ width: 40, height: 40 }}
               alt='second place medal'
               src='assets/2nd-place-medal.png'
             />
-          ) : (!isNetworkRace && position === 3) ||
-            (isNetworkRace && player.position === '3') ? (
+          ) : player.position === 3 ? (
             <Avatar
               sx={{ width: 40, height: 40 }}
               alt='third place medal'
@@ -62,7 +46,7 @@ export const TableLine: FC<ITableLine> = ({
             fontSize: 16,
           }}
         >
-          {isNetworkRace ? player.position : position}
+          {player.position}
         </Avatar>
       </Badge>
 
@@ -77,13 +61,8 @@ export const TableLine: FC<ITableLine> = ({
         alignItems: 'center',
       }}
     >
-      <Box sx={{ fontSize: 18 }}>
-        {usePrize(
-          isNetworkRace,
-          isNetworkRace ? Number(player.position) : position,
-          Number(player.points)
-        )}
-      </Box>
+      <PrizeAndBonusBox player={player} />
+
       <Typography sx={{ color: 'primary.main', fontSize: 16, m: 2 }}>
         {player.points}
       </Typography>

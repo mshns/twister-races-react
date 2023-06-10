@@ -1,23 +1,41 @@
-export interface INickname {
+export interface INicknameDB {
   current: string;
   previous: string;
 }
 
-export interface IPlayer {
+export interface IPlayerDB {
   _id: string;
-  nickname: INickname;
+  nickname: INicknameDB;
   login: string;
   update: string;
 }
 
-export interface IParticipant {
-  position: string;
+export interface IPlayerApi {
+  position: number;
   nickname: string;
-  points: string;
+  points: number;
+}
+
+export interface IPlayer {
+  position: number;
+  nickname: string;
+  points: number;
+  prize: string;
+  bonus: string;
+  isAffiliate: boolean;
 }
 
 export interface IRaceTime {
-  update: string;
   start: string;
   end: string;
+  update: string;
+}
+
+export interface IData {
+  storoCurrentPlayers: IPlayer[];
+  networkCurrentPlayers: IPlayer[];
+  currentRaceTime: IRaceTime;
+  storoPreviousPlayers: IPlayer[];
+  networkPreviousPlayers: IPlayer[];
+  previousRaceTime: IRaceTime;
 }

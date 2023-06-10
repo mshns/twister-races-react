@@ -12,29 +12,26 @@ import {
 } from '@mui/material';
 
 import { TableLine, TablePaginationActions } from 'entities';
-import { IParticipant } from 'shared';
+import { IPlayer, useAppSelector } from 'shared';
 
-interface ICurrentScoreTable {
-  playersAll: IParticipant[];
-  playersStoro: string[];
-}
-
-export const CurrentScoreTable: FC<ICurrentScoreTable> = ({
-  playersAll,
-  playersStoro,
-}) => {
+export const CurrentScoreTable: FC = () => {
   const { t } = useTranslation(['leaderboard']);
 
+  const storoPlayers = useAppSelector(
+    (state) => state.dataReducer.storoCurrentPlayers
+  );
+  const networkPlayers = useAppSelector(
+    (state) => state.dataReducer.networkCurrentPlayers
+  );
+
   const [isNetworkRace, SetNetworkRace] = useState(false);
-  const [players, setPlayers] = useState<IParticipant[]>([]);
+  const [players, setPlayers] = useState<IPlayer[]>(
+    storoPlayers
+  );
 
   useEffect(() => {
-    const storo08Players = playersAll.filter((player) =>
-      playersStoro.includes(player.nickname.toLowerCase())
-    );
-
-    isNetworkRace ? setPlayers(playersAll) : setPlayers(storo08Players);
-  }, [isNetworkRace, playersAll, playersStoro]);
+    isNetworkRace ? setPlayers(networkPlayers) : setPlayers(storoPlayers);
+  }, [isNetworkRace, networkPlayers, storoPlayers]);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(55);
@@ -132,17 +129,8 @@ export const CurrentScoreTable: FC<ICurrentScoreTable> = ({
         {(rowsPerPage > 0
           ? players.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           : players
-        ).map((player, index) => (
-          <TableLine
-            key={player.position}
-            player={player}
-            isNetworkRace={isNetworkRace}
-            isAffiliate={playersStoro.includes(
-              player.nickname.toLocaleLowerCase()
-            )}
-            position={page * rowsPerPage + index + 1}
-            index={index}
-          />
+        ).map((player) => (
+          <TableLine key={player.position} player={player} />
         ))}
       </Box>
     </Box>

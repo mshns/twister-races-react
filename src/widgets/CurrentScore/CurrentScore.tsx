@@ -1,14 +1,25 @@
 import { FC, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
-import { IParticipant, IPlayer, IRaceTime } from 'shared';
+import {
+  IPlayer,
+  IPlayerDB,
+  useAppDispatch,
+  getStoroPrize,
+  getStoroBonus,
+  IPlayerApi,
+  getNetworkPrize,
+} from 'shared';
 import { CurrentTimeTable } from 'widgets';
 import { CurrentScoreTable } from 'features';
+import {
+  setCurrentRaceTime,
+  setNetworkCurrentPlayers,
+  setStoroCurrentPlayers,
+} from 'app/store/reducers/DataSlice';
 
 export const CurrentScore: FC = () => {
-  const [playerList, setPlayerList] = useState<string[]>([]);
-  const [raceTime, setRaceTime] = useState<IRaceTime>();
-  const [participantList, setParticipantList] = useState<IParticipant[]>([]);
   const [isFetching, setFetching] = useState(false);
+  const dispatch = useAppDispatch();
 
   console.log(isFetching);
 
@@ -19,7 +30,7 @@ export const CurrentScore: FC = () => {
         .then((response) => response.json())
         .then((players) => {
           const playerList: string[] = [];
-          players.map((player: IPlayer) => {
+          players.map((player: IPlayerDB) => {
             playerList.push(player.nickname.current.toLowerCase());
           });
           return playerList;
@@ -27,47 +38,80 @@ export const CurrentScore: FC = () => {
 
       fetch('https://twister-races.onrender.com/current')
         .then((response) => response.json())
-        .then((participants) => {
-          const participantList: IParticipant[] = [];
+        .then((playerListXML) => {
+          const networkPlayerList: IPlayerApi[] = [];
 
           const parser = new DOMParser(),
-            xmlDoc = parser.parseFromString(participants, 'text/xml'),
-            participantsReport = xmlDoc.getElementsByTagName('report'),
-            updateTime = participantsReport[0].getAttribute(
-              'updated_at'
-            ) as string,
-            startRace = participantsReport[0].getAttribute(
-              'race_start'
-            ) as string,
-            endRace = participantsReport[0].getAttribute('race_end') as string,
-            participantsRows = Array.prototype.slice.call(
-              xmlDoc.getElementsByTagName('row')
-            );
+            XML = parser.parseFromString(playerListXML, 'text/xml'),
+            report = XML.getElementsByTagName('report'),
+            updateTime = report[0].getAttribute('updated_at') as string,
+            startRace = report[0].getAttribute('race_start') as string,
+            endRace = report[0].getAttribute('race_end') as string,
+            rows = Array.prototype.slice.call(XML.getElementsByTagName('row'));
 
-          participantsRows.map((row) => {
+          rows.map((row) => {
             const position =
-              row.getElementsByTagName('column')[0].lastChild?.nodeValue;
-            const participant =
-              row.getElementsByTagName('column')[1].lastChild?.nodeValue;
-            const points =
-              row.getElementsByTagName('column')[2].lastChild?.nodeValue;
+                row.getElementsByTagName('column')[0].lastChild?.nodeValue,
+              nickname =
+                row.getElementsByTagName('column')[1].lastChild?.nodeValue,
+              points =
+                row.getElementsByTagName('column')[2].lastChild?.nodeValue;
 
             if (points > 0) {
-              participantList.push({
-                position: position,
-                nickname: participant,
-                points: points,
+              networkPlayerList.push({
+                position: Number(position),
+                nickname: nickname,
+                points: Number(points),
               });
             }
           });
 
-          return { updateTime, startRace, endRace, participantList };
+          return { updateTime, startRace, endRace, networkPlayerList };
         }),
     ]).then(
-      ([playerList, { updateTime, startRace, endRace, participantList }]) => {
-        setPlayerList(playerList);
-        setRaceTime({ update: updateTime, start: startRace, end: endRace });
-        setParticipantList(participantList);
+      ([playerList, { updateTime, startRace, endRace, networkPlayerList }]) => {
+        dispatch(
+          setCurrentRaceTime({
+            update: updateTime,
+            start: startRace,
+            end: endRace,
+          })
+        );
+
+        const storoPlayers: IPlayer[] = [],
+          networkPlayers: IPlayer[] = [];
+        let position = 1;
+
+        networkPlayerList.map((player) => {
+          const isAffiliate = playerList.includes(
+            player.nickname.toLowerCase()
+          );
+
+          networkPlayers.push({
+            position: player.position,
+            nickname: player.nickname,
+            points: player.points,
+            prize: getNetworkPrize(player.position),
+            bonus: '',
+            isAffiliate: isAffiliate,
+          });
+
+          if (isAffiliate) {
+            storoPlayers.push({
+              position: position,
+              nickname: player.nickname,
+              points: player.points,
+              prize: getStoroPrize(position),
+              bonus: getStoroBonus(player.points),
+              isAffiliate: false,
+            });
+            position++;
+          }
+        });
+
+        dispatch(setStoroCurrentPlayers(storoPlayers));
+        dispatch(setNetworkCurrentPlayers(networkPlayers));
+
         setFetching(false);
       }
     );
@@ -75,11 +119,8 @@ export const CurrentScore: FC = () => {
 
   return (
     <Box>
-      <CurrentTimeTable time={raceTime} />
-      <CurrentScoreTable
-        playersAll={participantList}
-        playersStoro={playerList}
-      />
+      <CurrentTimeTable />
+      <CurrentScoreTable />
     </Box>
   );
 };

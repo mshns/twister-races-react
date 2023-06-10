@@ -5,15 +5,12 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import EventBusyIcon from '@mui/icons-material/EventBusy';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 
-import { IRaceTime, useLocalDate, useLocalTime } from 'shared';
+import { useAppSelector, useLocalDate, useLocalTime } from 'shared';
 import { TimeLineWrapper } from './styled';
 
-interface ICurrentTimeTable {
-  time: IRaceTime | undefined;
-}
-
-export const CurrentTimeTable: FC<ICurrentTimeTable> = ({ time }) => {
+export const CurrentTimeTable: FC = () => {
   const { t } = useTranslation(['leaderboard']);
+  const time = useAppSelector((state) => state.dataReducer.currentRaceTime);
 
   return (
     <Paper sx={{ bgcolor: 'background.default' }}>
@@ -24,7 +21,7 @@ export const CurrentTimeTable: FC<ICurrentTimeTable> = ({ time }) => {
           </Tooltip>
           <Typography sx={{ ml: 1 }}>{t('Race start')}</Typography>
         </Box>
-        <Typography>{useLocalDate(time?.start)}</Typography>
+        <Typography>{useLocalDate(time.start)}</Typography>
       </TimeLineWrapper>
 
       <Divider />
@@ -36,7 +33,7 @@ export const CurrentTimeTable: FC<ICurrentTimeTable> = ({ time }) => {
           </Tooltip>
           <Typography sx={{ ml: 1 }}>{t('Race finish')}</Typography>
         </Box>
-        <Typography>{useLocalDate(time?.end.slice(0, 10))}</Typography>
+        <Typography>{useLocalDate(time.end.slice(0, 10))}</Typography>
       </TimeLineWrapper>
 
       <Divider />
