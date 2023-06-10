@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import { IParticipant, IPlayer, IRaceTime } from 'shared';
-import { CurrentTimeTable, Spinner } from 'widgets';
+import { CurrentTimeTable } from 'widgets';
 import { CurrentScoreTable } from 'features';
 
 export const CurrentScore: FC = () => {
@@ -9,6 +9,8 @@ export const CurrentScore: FC = () => {
   const [raceTime, setRaceTime] = useState<IRaceTime>();
   const [participantList, setParticipantList] = useState<IParticipant[]>([]);
   const [isFetching, setFetching] = useState(false);
+
+  console.log(isFetching);
 
   useEffect(() => {
     setFetching(true);
@@ -73,17 +75,11 @@ export const CurrentScore: FC = () => {
 
   return (
     <Box>
-      {isFetching ? (
-        <Spinner />
-      ) : (
-        <>
-          <CurrentTimeTable time={raceTime} />
-          <CurrentScoreTable
-            playersAll={participantList}
-            playersStoro={playerList}
-          />
-        </>
-      )}
+      <CurrentTimeTable time={raceTime} />
+      <CurrentScoreTable
+        playersAll={participantList}
+        playersStoro={playerList}
+      />
     </Box>
   );
 };

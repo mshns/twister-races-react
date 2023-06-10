@@ -9,9 +9,15 @@
 
   "Network race": "Сетевая гонка",
 
-  "Rows per page": "Строк",
-  "All": "Все",
+  "Rows per page": "Строк на странице",
+  "Displaying places": "Показаны места с",
+  "to": "по",
   "of": "из",
+  "All": "Все",
+
+  "Bonus": "Бонус",
+  "for 50K points": "за 50K очков",
+  "for 100K points": "за 100K очков",
 
   "Place": "Место",
   "Player": "Игрок",

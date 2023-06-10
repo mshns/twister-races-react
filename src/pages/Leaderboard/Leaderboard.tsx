@@ -5,11 +5,18 @@ import { Score } from 'widgets';
 
 export const Leaderboard: FC = () => {
   return (
-    <Box component='main' sx={{ display: 'flex', justifyContent: 'center' }}>
-      <Box sx={{ width: '20%' }}></Box>
+    <Box component='main' sx={{ display: 'flex', justifyContent: 'space-around' }}>
       <Box
         sx={{
-          width: '50%',
+          minWidth: 200,
+          backgroundColor: 'background.paper',
+          margin: 2,
+          padding: 2,
+        }}
+      ></Box>
+      <Box
+        sx={{
+          minWidth: 720,
           margin: 2,
           padding: 2,
           backgroundColor: 'background.paper',
@@ -18,7 +25,14 @@ export const Leaderboard: FC = () => {
       >
         <Score />
       </Box>
-      <Box sx={{ width: '20%' }}></Box>
+      <Box
+        sx={{
+          minWidth: 200,
+          backgroundColor: 'background.paper',
+          margin: 2,
+          padding: 2,
+        }}
+      ></Box>
     </Box>
   );
 };

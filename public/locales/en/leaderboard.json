@@ -9,9 +9,15 @@
 
   "Network race": "Network race",
 
-  "Rows per page": "Rows",
-  "All": "All",
+  "Rows per page": "Rows per page",
+  "Displaying places": "Displaying places",
+  "to": "to",
   "of": "of",
+  "All": "All",
+
+  "Bonus": "Bonus",
+  "for 50K points": "for 50K points",
+  "for 100K points": "for 50K points",
 
   "Place": "Place",
   "Player": "Player",

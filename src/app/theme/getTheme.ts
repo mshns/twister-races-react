@@ -20,6 +20,11 @@ export const getTheme = (mode: PaletteMode) => ({
           success: {
             main: '#31C39750',
           },
+          info: {
+            main: '#FFA270',
+            light: '#FFA27010',
+            dark: '#FFA27050',
+          },
           text: {
             primary: '#1c1c1c',
             secondary: '#505050',

@@ -1,105 +1,22 @@
-import { FC, useState } from 'react';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import { IParticipant } from 'shared';
-import { FormControlLabel, Switch, TableHead } from '@mui/material';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TableLine } from 'entities';
+
+import {
+  Box,
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  Switch,
+  TablePagination,
+  Typography,
+} from '@mui/material';
+
+import { TableLine, TablePaginationActions } from 'entities';
+import { IParticipant } from 'shared';
 
 interface ICurrentScoreTable {
   playersAll: IParticipant[];
   playersStoro: string[];
-}
-
-interface ITablePaginationActionsProps {
-  count: number;
-  page: number;
-  rowsPerPage: number;
-  onPageChange: (
-    event: React.MouseEvent<HTMLButtonElement>,
-    newPage: number
-  ) => void;
-}
-
-function TablePaginationActions(props: ITablePaginationActionsProps) {
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
-
-  const handleFirstPageButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    onPageChange(event, 0);
-  };
-
-  const handleBackButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    onPageChange(event, page - 1);
-  };
-
-  const handleNextButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    onPageChange(event, page + 1);
-  };
-
-  const handleLastPageButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
-
-  return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label='first page'
-      >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-      </IconButton>
-      <IconButton
-        onClick={handleBackButtonClick}
-        disabled={page === 0}
-        aria-label='previous page'
-      >
-        {theme.direction === 'rtl' ? (
-          <KeyboardArrowRight />
-        ) : (
-          <KeyboardArrowLeft />
-        )}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label='next page'
-      >
-        {theme.direction === 'rtl' ? (
-          <KeyboardArrowLeft />
-        ) : (
-          <KeyboardArrowRight />
-        )}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label='last page'
-      >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-      </IconButton>
-    </Box>
-  );
 }
 
 export const CurrentScoreTable: FC<ICurrentScoreTable> = ({
@@ -108,19 +25,22 @@ export const CurrentScoreTable: FC<ICurrentScoreTable> = ({
 }) => {
   const { t } = useTranslation(['leaderboard']);
 
-  const [isNetworkRace, SetNetworkRace] = useState(true);
+  const [isNetworkRace, SetNetworkRace] = useState(false);
+  const [players, setPlayers] = useState<IParticipant[]>([]);
 
-  const storo08Players = playersAll.filter((player) =>
-    playersStoro.includes(player.nickname.toLocaleLowerCase())
-  );
-  const [players, setPlayers] = useState<IParticipant[]>(storo08Players);
+  useEffect(() => {
+    const storo08Players = playersAll.filter((player) =>
+      playersStoro.includes(player.nickname.toLowerCase())
+    );
+
+    isNetworkRace ? setPlayers(playersAll) : setPlayers(storo08Players);
+  }, [isNetworkRace, playersAll, playersStoro]);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(55);
 
   const handleToogleRace = () => {
-    SetNetworkRace(!isNetworkRace);
-    isNetworkRace ? setPlayers(playersAll) : setPlayers(storo08Players);
+    SetNetworkRace((prev) => !prev);
     setPage(0);
     setRowsPerPage(55);
   };
@@ -140,79 +60,91 @@ export const CurrentScoreTable: FC<ICurrentScoreTable> = ({
   };
 
   return (
-    <Box>
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <FormControlLabel
           control={<Switch />}
-          label={t('Network race')}
+          label={
+            <Typography
+              sx={{
+                color: 'primary.main',
+                textTransform: 'uppercase',
+                fontSize: 14,
+              }}
+            >
+              {t('Network race')}
+            </Typography>
+          }
           labelPlacement='start'
-          sx={{ color: 'primary.main', textTransform: 'uppercase' }}
           onChange={handleToogleRace}
         />
-        <TablePagination
-          component='div'
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            '.MuiTablePagination-select': { pl: 0 },
-            '.MuiInputBase-input': { p: 0 },
-            color: 'text.secondary',
-          }}
-          rowsPerPageOptions={[
-            10,
-            55,
-            100,
-            250,
-            { label: t('All'), value: -1 },
-          ]}
-          colSpan={3}
-          count={players.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          labelRowsPerPage={t('Rows per page')}
-          labelDisplayedRows={({ from, to, count }) =>
-            `${from}-${to} ${t('of')} ${count}`
+        <FormControlLabel
+          control={<Checkbox />}
+          label={
+            <Typography
+              sx={{
+                color: 'primary.main',
+                textTransform: 'uppercase',
+                fontSize: 14,
+              }}
+            >
+              {t('Network race')}
+            </Typography>
           }
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          ActionsComponent={TablePaginationActions}
+          labelPlacement='start'
         />
       </Box>
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell sx={{ pt: 1, pb: 1 }}>{t('Place')}</TableCell>
-              <TableCell sx={{ pt: 1, pb: 1 }}>{t('Player')}</TableCell>
-              <TableCell sx={{ pt: 1, pb: 1 }}>{t('Prize')}</TableCell>
-              <TableCell sx={{ pt: 1, pb: 1, textAlign: 'right' }}>
-                {t('Points')}
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {(rowsPerPage > 0
-              ? players.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage
-                )
-              : players
-            ).map((player, index) => (
-              <TableLine
-                key={player.position}
-                player={player}
-                isNetworkRace={isNetworkRace}
-                isAffiliate={playersStoro.includes(
-                  player.nickname.toLocaleLowerCase()
-                )}
-                page={page}
-                rowsPerPage={rowsPerPage}
-                index={index}
-              />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+
+      <Divider sx={{ mb: 1 }} />
+
+      <TablePagination
+        component={'div'}
+        sx={{
+          width: 640,
+          '.MuiTablePagination-toolbar': {
+            padding: '0 10px',
+            flexWrap: 'wrap',
+          },
+          '.MuiTablePagination-selectLabel': { order: 0, margin: 0 },
+          '.MuiTablePagination-select': { order: 1, padding: 0 },
+          '.MuiTablePagination-displayedRows': {
+            order: 3,
+            width: '100%',
+            marginTop: 0,
+          },
+        }}
+        rowsPerPageOptions={[10, 55, 100, 250, { label: t('All'), value: -1 }]}
+        count={players.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        labelRowsPerPage={t('Rows per page')}
+        labelDisplayedRows={({ from, to, count }) =>
+          `${t('Displaying places')} ${from} ${t('to')} ${to} ${t(
+            'of'
+          )} ${count}`
+        }
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        ActionsComponent={TablePaginationActions}
+      />
+
+      <Box>
+        {(rowsPerPage > 0
+          ? players.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+          : players
+        ).map((player, index) => (
+          <TableLine
+            key={player.position}
+            player={player}
+            isNetworkRace={isNetworkRace}
+            isAffiliate={playersStoro.includes(
+              player.nickname.toLocaleLowerCase()
+            )}
+            position={page * rowsPerPage + index + 1}
+            index={index}
+          />
+        ))}
+      </Box>
     </Box>
   );
 };

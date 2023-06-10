@@ -1,5 +1,5 @@
 export const STORO_PRIZES = {
-  step1: '1x Twister €50 + 6x Twister €20',
+  step1: '1x Twister €50, 6x Twister €20',
   step2: '6x Twister €20',
   step3: '5x Twister €20',
   step4: '4x Twister €20',
