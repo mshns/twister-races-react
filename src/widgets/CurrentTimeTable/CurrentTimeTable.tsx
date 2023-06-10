@@ -1,6 +1,13 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, Divider, Paper, Tooltip, Typography } from '@mui/material';
+import {
+  Box,
+  Divider,
+  Paper,
+  Skeleton,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import EventBusyIcon from '@mui/icons-material/EventBusy';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
@@ -11,6 +18,11 @@ import { TimeLineWrapper } from './styled';
 export const CurrentTimeTable: FC = () => {
   const { t } = useTranslation(['leaderboard']);
   const time = useAppSelector((state) => state.dataReducer.currentRaceTime);
+  const isFetching = useAppSelector((state) => state.dataReducer.isFetching);
+
+  const startRace = useLocalDate(time.start.slice(0, 10)),
+    endRace = useLocalDate(time.end.slice(0, 10)),
+    lastUpdate = useLocalTime(time?.update);
 
   return (
     <Paper sx={{ bgcolor: 'background.default' }}>
@@ -21,7 +33,11 @@ export const CurrentTimeTable: FC = () => {
           </Tooltip>
           <Typography sx={{ ml: 1 }}>{t('Race start')}</Typography>
         </Box>
-        <Typography>{useLocalDate(time.start)}</Typography>
+        {isFetching ? (
+          <Skeleton variant='text' sx={{ fontSize: 16, width: 240 }} />
+        ) : (
+          <Typography>{startRace}</Typography>
+        )}
       </TimeLineWrapper>
 
       <Divider />
@@ -33,7 +49,11 @@ export const CurrentTimeTable: FC = () => {
           </Tooltip>
           <Typography sx={{ ml: 1 }}>{t('Race finish')}</Typography>
         </Box>
-        <Typography>{useLocalDate(time.end.slice(0, 10))}</Typography>
+        {isFetching ? (
+          <Skeleton variant='text' sx={{ fontSize: 16, width: 240 }} />
+        ) : (
+          <Typography>{endRace}</Typography>
+        )}
       </TimeLineWrapper>
 
       <Divider />
@@ -45,7 +65,11 @@ export const CurrentTimeTable: FC = () => {
           </Tooltip>
           <Typography sx={{ ml: 1 }}>{t('Updated')}</Typography>
         </Box>
-        <Typography>{useLocalTime(time?.update)}</Typography>
+        {isFetching ? (
+          <Skeleton variant='text' sx={{ fontSize: 16, width: 240 }} />
+        ) : (
+          <Typography>{lastUpdate}</Typography>
+        )}
       </TimeLineWrapper>
     </Paper>
   );

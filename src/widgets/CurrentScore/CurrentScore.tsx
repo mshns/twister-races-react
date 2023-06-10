@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { Box } from '@mui/material';
 import {
   IPlayer,
@@ -13,18 +13,16 @@ import { CurrentTimeTable } from 'widgets';
 import { CurrentScoreTable } from 'features';
 import {
   setCurrentRaceTime,
+  setFetching,
   setNetworkCurrentPlayers,
   setStoroCurrentPlayers,
 } from 'app/store/reducers/DataSlice';
 
 export const CurrentScore: FC = () => {
-  const [isFetching, setFetching] = useState(false);
   const dispatch = useAppDispatch();
 
-  console.log(isFetching);
-
   useEffect(() => {
-    setFetching(true);
+    dispatch(setFetching(true));
     Promise.all([
       fetch('https://twister-races.onrender.com/players')
         .then((response) => response.json())
@@ -112,10 +110,10 @@ export const CurrentScore: FC = () => {
         dispatch(setStoroCurrentPlayers(storoPlayers));
         dispatch(setNetworkCurrentPlayers(networkPlayers));
 
-        setFetching(false);
+        dispatch(setFetching(false));
       }
     );
-  }, []);
+  }, [dispatch]);
 
   return (
     <Box>

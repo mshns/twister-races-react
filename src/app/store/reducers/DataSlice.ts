@@ -9,6 +9,7 @@ const initialState: IData = {
   networkPreviousPlayers: [],
   currentRaceTime: { start: '', end: '', update: '' },
   previousRaceTime: { start: '', end: '', update: '' },
+  isFetching: false,
 };
 
 const dataSlice = createSlice({
@@ -33,6 +34,9 @@ const dataSlice = createSlice({
     setPreviousRaceTime(state, action: PayloadAction<IRaceTime>) {
       state.previousRaceTime = action.payload;
     },
+    setFetching(state, action: PayloadAction<boolean>) {
+      state.isFetching = action.payload;
+    },
   },
 });
 
@@ -43,6 +47,7 @@ export const {
   setStoroPreviousPlayers,
   setNetworkPreviousPlayers,
   setPreviousRaceTime,
+  setFetching,
 } = dataSlice.actions;
 
 export default dataSlice.reducer;

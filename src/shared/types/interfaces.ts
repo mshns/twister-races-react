@@ -38,4 +38,5 @@ export interface IData {
   storoPreviousPlayers: IPlayer[];
   networkPreviousPlayers: IPlayer[];
   previousRaceTime: IRaceTime;
+  isFetching: boolean;
 }

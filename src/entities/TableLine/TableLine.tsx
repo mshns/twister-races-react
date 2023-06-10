@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Avatar, Badge, Box, Paper, Typography } from '@mui/material';
+import { Avatar, Badge, Box, Typography } from '@mui/material';
 import { IPlayer } from 'shared';
 import { TableLineWrapper } from './styled';
 import { PrizeAndBonusBox } from 'entities';
