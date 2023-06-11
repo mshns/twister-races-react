@@ -15,7 +15,7 @@ import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { useAppSelector, useLocalDate, useLocalTime } from 'shared';
 import { TimeLineWrapper } from './styled';
 
-export const CurrentTimeTable: FC = () => {
+export const TimeTable: FC = () => {
   const { t } = useTranslation(['leaderboard']);
   const time = useAppSelector((state) => state.dataReducer.raceTime);
   const isFetching = useAppSelector((state) => state.dataReducer.isFetching);
@@ -27,14 +27,16 @@ export const CurrentTimeTable: FC = () => {
   return (
     <Paper sx={{ bgcolor: 'background.default' }}>
       <TimeLineWrapper>
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Tooltip title={t('Race start')}>
             <EventAvailableIcon />
           </Tooltip>
-          <Typography sx={{ ml: 1 }}>{t('Race start')}</Typography>
+          <Typography sx={{ ml: 1, fontWeight: 100 }}>
+            {t('Race start')}
+          </Typography>
         </Box>
         {isFetching ? (
-          <Skeleton variant='text' sx={{ fontSize: 16, width: 240 }} />
+          <Skeleton variant='text' sx={{ fontSize: 16, width: 200 }} />
         ) : (
           <Typography>{startRace}</Typography>
         )}
@@ -50,7 +52,7 @@ export const CurrentTimeTable: FC = () => {
           <Typography sx={{ ml: 1 }}>{t('Race finish')}</Typography>
         </Box>
         {isFetching ? (
-          <Skeleton variant='text' sx={{ fontSize: 16, width: 240 }} />
+          <Skeleton variant='text' sx={{ fontSize: 16, width: 200 }} />
         ) : (
           <Typography>{endRace}</Typography>
         )}
@@ -66,7 +68,7 @@ export const CurrentTimeTable: FC = () => {
           <Typography sx={{ ml: 1 }}>{t('Updated')}</Typography>
         </Box>
         {isFetching ? (
-          <Skeleton variant='text' sx={{ fontSize: 16, width: 240 }} />
+          <Skeleton variant='text' sx={{ fontSize: 16, width: 200 }} />
         ) : (
           <Typography>{lastUpdate}</Typography>
         )}

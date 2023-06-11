@@ -1,1 +1,1 @@
-export { CurrentScoreTable } from './CurrentScoreTable/CurrentScoreTable';
+export { ScoreTable } from './ScoreTable/ScoreTable';

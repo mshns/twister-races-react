@@ -8,6 +8,7 @@
   "at": "at",
 
   "Network race": "Network race",
+  "Update": "Update",
 
   "Rows per page": "Rows per page",
   "Displaying places": "Displaying places",
@@ -24,6 +25,5 @@
   "Prize": "Prize",
   "Points": "Points",
 
-  "Loading...": "Loading...",
-  "Please wait...": "Please wait..."
+  "Loading. Please wait.": "Loading. Please wait."
 }

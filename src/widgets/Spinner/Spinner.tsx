@@ -40,7 +40,6 @@ export const Spinner = () => {
     <Box
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      <Typography sx={{ color: 'primary.main' }}>{t('Loading...')}</Typography>
       <Box sx={{ width: '60%', m: 2 }}>
         <LinearProgress
           variant='buffer'
@@ -48,8 +47,8 @@ export const Spinner = () => {
           valueBuffer={buffer}
         />
       </Box>
-      <Typography sx={{ color: 'primary.light' }}>
-        {t('Please wait...')}
+      <Typography>
+        {t('Loading. Please wait.')}
       </Typography>
     </Box>
   );
