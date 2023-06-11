@@ -32,11 +32,8 @@ export interface IRaceTime {
 }
 
 export interface IData {
-  storoCurrentPlayers: IPlayer[];
-  networkCurrentPlayers: IPlayer[];
-  currentRaceTime: IRaceTime;
-  storoPreviousPlayers: IPlayer[];
-  networkPreviousPlayers: IPlayer[];
-  previousRaceTime: IRaceTime;
+  storoPlayers: IPlayer[];
+  networkPlayers: IPlayer[];
+  raceTime: IRaceTime;
   isFetching: boolean;
 }

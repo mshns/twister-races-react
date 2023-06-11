@@ -12,10 +12,10 @@ import {
 import { CurrentTimeTable } from 'widgets';
 import { CurrentScoreTable } from 'features';
 import {
-  setCurrentRaceTime,
+  setRaceTime,
+  setStoroPlayers,
+  setNetworkPlayers,
   setFetching,
-  setNetworkCurrentPlayers,
-  setStoroCurrentPlayers,
 } from 'app/store/reducers/DataSlice';
 
 export const CurrentScore: FC = () => {
@@ -69,7 +69,7 @@ export const CurrentScore: FC = () => {
     ]).then(
       ([playerList, { updateTime, startRace, endRace, networkPlayerList }]) => {
         dispatch(
-          setCurrentRaceTime({
+          setRaceTime({
             update: updateTime,
             start: startRace,
             end: endRace,
@@ -107,9 +107,8 @@ export const CurrentScore: FC = () => {
           }
         });
 
-        dispatch(setStoroCurrentPlayers(storoPlayers));
-        dispatch(setNetworkCurrentPlayers(networkPlayers));
-
+        dispatch(setStoroPlayers(storoPlayers));
+        dispatch(setNetworkPlayers(networkPlayers));
         dispatch(setFetching(false));
       }
     );

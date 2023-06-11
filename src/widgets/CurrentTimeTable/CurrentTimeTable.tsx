@@ -17,7 +17,7 @@ import { TimeLineWrapper } from './styled';
 
 export const CurrentTimeTable: FC = () => {
   const { t } = useTranslation(['leaderboard']);
-  const time = useAppSelector((state) => state.dataReducer.currentRaceTime);
+  const time = useAppSelector((state) => state.dataReducer.raceTime);
   const isFetching = useAppSelector((state) => state.dataReducer.isFetching);
 
   const startRace = useLocalDate(time.start.slice(0, 10)),

@@ -18,8 +18,10 @@ export const PrizeAndBonusBox: FC<IPrizeAndBonusBox> = ({ player }) => {
       {player.prize && (
         <PrizeWrapper>
           <ConfirmationNumberIcon
-            fontSize='medium'
-            sx={{ mr: 0.25, color: 'primary.light' }}
+            sx={{
+              mr: 0.3,
+              color: 'primary.light',
+            }}
           />
           <Typography sx={{ fontSize: 14 }}>{player.prize}</Typography>
         </PrizeWrapper>
@@ -30,8 +32,12 @@ export const PrizeAndBonusBox: FC<IPrizeAndBonusBox> = ({ player }) => {
           <Divider />
           <PrizeWrapper>
             <LocalActivityIcon
-              fontSize='medium'
-              sx={{ mr: 0.25, color: 'primary.light' }}
+              sx={{
+                mr: 0.3,
+                color: 'primary.light',
+                position: 'absolute',
+                left: -26,
+              }}
             />
             <Typography sx={{ fontSize: 14 }}>
               {t('Bonus')} {player.bonus}{' '}

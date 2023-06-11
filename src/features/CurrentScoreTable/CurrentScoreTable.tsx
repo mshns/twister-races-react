@@ -18,10 +18,10 @@ export const CurrentScoreTable: FC = () => {
   const { t } = useTranslation(['leaderboard']);
 
   const storoPlayers = useAppSelector(
-    (state) => state.dataReducer.storoCurrentPlayers
+    (state) => state.dataReducer.storoPlayers
   );
   const networkPlayers = useAppSelector(
-    (state) => state.dataReducer.networkCurrentPlayers
+    (state) => state.dataReducer.networkPlayers
   );
 
   const [isNetworkRace, SetNetworkRace] = useState(false);
