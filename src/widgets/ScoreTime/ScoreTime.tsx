@@ -15,7 +15,7 @@ import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { useAppSelector, useLocalDate, useLocalTime } from 'shared';
 import { TimeLineWrapper } from './styled';
 
-export const TimeTable: FC = () => {
+export const ScoreTime: FC = () => {
   const { t } = useTranslation(['leaderboard']);
   const time = useAppSelector((state) => state.dataReducer.raceTime);
   const isFetching = useAppSelector((state) => state.dataReducer.isFetching);

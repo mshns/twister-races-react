@@ -1,5 +1,4 @@
-import { FC, useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { useEffect, useState } from 'react';
 import {
   IPlayer,
   IPlayerDB,
@@ -9,8 +8,7 @@ import {
   IPlayerApi,
   getNetworkPrize,
 } from 'shared';
-import { TimeTable } from 'widgets';
-import { ScoreTable } from 'features';
+import { ScoreDisplay } from 'widgets';
 import {
   setRaceTime,
   setStoroPlayers,
@@ -18,7 +16,7 @@ import {
   setFetching,
 } from 'app/store/reducers/DataSlice';
 
-export const PreviousScore: FC = () => {
+export const ScoreFetching = ({ week }: { week: string }) => {
   const dispatch = useAppDispatch();
   const [updateScore, setUpdateScore] = useState(false);
 
@@ -37,7 +35,7 @@ export const PreviousScore: FC = () => {
           return playerList;
         }),
 
-      fetch('https://twister-races.onrender.com/previous')
+      fetch(`https://twister-races.onrender.com/${week}`)
         .then((response) => response.json())
         .then((playerListXML) => {
           const networkPlayerList: IPlayerApi[] = [];
@@ -115,12 +113,7 @@ export const PreviousScore: FC = () => {
         dispatch(setFetching(false));
       }
     );
-  }, [dispatch, updateScore]);
+  }, [dispatch, updateScore, week]);
 
-  return (
-    <Box>
-      <TimeTable />
-      <ScoreTable setUpdateScore={setUpdateScore} />
-    </Box>
-  );
+  return <ScoreDisplay setUpdateScore={setUpdateScore} />;
 };

@@ -1,14 +1,9 @@
-import { FC } from 'react';
 import { Avatar, Badge, Box, Typography } from '@mui/material';
 import { IPlayer } from 'shared';
 import { TableLineWrapper } from './styled';
-import { PrizeAndBonusBox } from 'entities';
+import { PrizeBonus } from 'entities';
 
-interface ITableLine {
-  player: IPlayer;
-}
-
-export const TableLine: FC<ITableLine> = ({ player }) => (
+export const Player = ({ player }: { player: IPlayer }) => (
   <TableLineWrapper player={player}>
     <Box sx={{ width: '40%', display: 'flex', alignItems: 'center' }}>
       <Badge
@@ -61,7 +56,7 @@ export const TableLine: FC<ITableLine> = ({ player }) => (
         alignItems: 'center',
       }}
     >
-      <PrizeAndBonusBox player={player} />
+      <PrizeBonus player={player} />
 
       <Typography sx={{ color: 'primary.main', fontSize: 16, m: 2 }}>
         {player.points}

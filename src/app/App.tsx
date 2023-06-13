@@ -28,7 +28,7 @@ const App = () => {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path='/' element={<Layout />}>
+          <Route path='/twister-races-new' element={<Layout />}>
             <Route index element={<Leaderboard />} />
             <Route path='registration' element={<Registration />} />
             <Route path='prizes' element={<Prizes />} />

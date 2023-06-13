@@ -1,1 +1,1 @@
-export { ScoreTable } from './ScoreTable/ScoreTable';
+export { ScoreFetching } from './ScoreFetching/ScoreFetching';

@@ -1,64 +1,27 @@
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, Container, Tab, Tabs } from '@mui/material';
-import { CurrentScore, PreviousScore } from 'widgets';
+import { Box, Tab, Tabs } from '@mui/material';
 
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role='tabpanel'
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Container sx={{ p: 3 }}>
-          <Box>{children}</Box>
-        </Container>
-      )}
-    </div>
-  );
-}
-
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
+import { ScoreFetching } from 'features';
 
 export const Score: FC = () => {
   const { t } = useTranslation(['leaderboard']);
-  const [value, setValue] = useState(0);
+  const [week, setWeek] = useState('current');
 
-  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+  const handleChange = () => {
+    setWeek((prev) => (prev === 'current' ? 'previous' : 'current'));
   };
 
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} variant='fullWidth'>
-          <Tab label={t('Current leaderboard')} {...a11yProps(0)} />
-          <Tab label={t('Previous results')} {...a11yProps(1)} />
+        <Tabs value={week} onChange={handleChange} variant='fullWidth'>
+          <Tab value={'current'} label={t('Current leaderboard')} />
+          <Tab value={'previous'} label={t('Previous results')} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
-        <CurrentScore />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <PreviousScore />
-      </TabPanel>
+
+      <ScoreFetching week={week} />
     </Box>
   );
 };

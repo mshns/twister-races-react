@@ -7,7 +7,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
-interface ITablePaginationActionsProps {
+interface IPaginationActions {
   count: number;
   page: number;
   rowsPerPage: number;
@@ -17,12 +17,12 @@ interface ITablePaginationActionsProps {
   ) => void;
 }
 
-export const TablePaginationActions = ({
+export const PaginationActions = ({
   count,
   page,
   rowsPerPage,
   onPageChange,
-}: ITablePaginationActionsProps) => {
+}: IPaginationActions) => {
   const theme = useTheme();
 
   const handleFirstPageButtonClick = (

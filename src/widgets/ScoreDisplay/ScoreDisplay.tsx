@@ -12,15 +12,15 @@ import {
   Typography,
 } from '@mui/material';
 import CachedIcon from '@mui/icons-material/Cached';
-import { Spinner } from 'widgets';
-import { TableLine, TablePaginationActions } from 'entities';
+import { ScoreTime, Spinner } from 'widgets';
+import { Player, PaginationActions } from 'entities';
 import { IPlayer, useAppSelector } from 'shared';
 
-interface ScoreTable {
+interface IScoreDisplay {
   setUpdateScore: Dispatch<SetStateAction<boolean>>;
 }
 
-export const ScoreTable: FC<ScoreTable> = ({ setUpdateScore }) => {
+export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
   const { t } = useTranslation(['leaderboard']);
   const isFetching = useAppSelector((state) => state.dataReducer.isFetching);
 
@@ -63,6 +63,7 @@ export const ScoreTable: FC<ScoreTable> = ({ setUpdateScore }) => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <ScoreTime />
       <Box sx={{ display: 'flex', justifyContent: 'space-around', m: 1 }}>
         <FormControlLabel
           sx={{ margin: 0 }}
@@ -84,7 +85,10 @@ export const ScoreTable: FC<ScoreTable> = ({ setUpdateScore }) => {
         <FormControlLabel
           sx={{ '&:hover svg': { transform: 'rotate(180deg)' } }}
           control={
-            <Button variant='contained' sx={{ ml: 1, height: 24, backgroundColor: 'primary.light' }}>
+            <Button
+              variant='contained'
+              sx={{ ml: 1, height: 24, backgroundColor: 'primary.light' }}
+            >
               <CachedIcon sx={{ transition: 'ease-in-out 0.3s' }} />
             </Button>
           }
@@ -143,7 +147,7 @@ export const ScoreTable: FC<ScoreTable> = ({ setUpdateScore }) => {
           }
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-          ActionsComponent={TablePaginationActions}
+          ActionsComponent={PaginationActions}
         />
       )}
       {isFetching ? (
@@ -157,7 +161,7 @@ export const ScoreTable: FC<ScoreTable> = ({ setUpdateScore }) => {
               )
             : players
           ).map((player) => (
-            <TableLine key={player.position} player={player} />
+            <Player key={player.position} player={player} />
           ))}
         </Box>
       )}

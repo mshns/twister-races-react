@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Box, Divider, Typography } from '@mui/material';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
@@ -6,11 +5,7 @@ import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import { PrizeWrapper } from './styled/PrizeWrapper.styled';
 import { IPlayer } from 'shared';
 
-interface IPrizeAndBonusBox {
-  player: IPlayer;
-}
-
-export const PrizeAndBonusBox: FC<IPrizeAndBonusBox> = ({ player }) => {
+export const PrizeBonus = ({ player }: { player: IPlayer }) => {
   const { t } = useTranslation(['leaderboard']);
 
   return (
