@@ -5,8 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import LanguageIcon from '@mui/icons-material/Language';
-
-import { ColorModeContext } from '../../../../app/theme/colorModeContext';
+import { ColorModeContext } from 'app/theme/colorModeContext';
 
 export const Settings: FC = () => {
   const { i18n, t } = useTranslation();

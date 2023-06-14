@@ -1,36 +1,48 @@
 import { FC } from 'react';
-import { Box } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 
 import { Score } from 'widgets';
+import { Benefit } from 'entities';
+import { BENEFIT_LIST } from 'shared';
 
 export const Leaderboard: FC = () => {
   return (
-    <Box component='main' sx={{ display: 'flex', justifyContent: 'space-around' }}>
+    <Box
+      component='main'
+      sx={{
+        width: '100%',
+        padding: '20px',
+        display: 'flex',
+        justifyContent: 'space-between',
+      }}
+    >
       <Box
         sx={{
-          minWidth: 200,
-          backgroundColor: 'background.paper',
-          margin: 2,
-          padding: 2,
+          position: 'sticky',
+          top: '20px',
+          width: `calc(50% - 360px)`,
+          height: '100%',
         }}
-      ></Box>
-      <Box
+      >
+        {BENEFIT_LIST.map((benefit) => (
+          <Benefit benefit={benefit} />
+        ))}
+      </Box>
+      <Paper
         sx={{
-          minWidth: 720,
-          margin: 2,
-          padding: 2,
+          width: '680px',
+          padding: '10px 20px',
+
           backgroundColor: 'background.paper',
           borderRadius: 1,
         }}
       >
         <Score />
-      </Box>
+      </Paper>
       <Box
         sx={{
-          minWidth: 200,
-          backgroundColor: 'background.paper',
-          margin: 2,
-          padding: 2,
+          width: `calc(50% - 360px)`,
+          padding: '20px',
         }}
       ></Box>
     </Box>

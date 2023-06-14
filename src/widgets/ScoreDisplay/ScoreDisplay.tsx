@@ -1,19 +1,9 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  Box,
-  Button,
-  Divider,
-  FormControlLabel,
-  Skeleton,
-  Switch,
-  TablePagination,
-  Typography,
-} from '@mui/material';
-import CachedIcon from '@mui/icons-material/Cached';
+import { Box, Divider, Skeleton, TablePagination } from '@mui/material';
 import { ScoreTime, Spinner } from 'widgets';
-import { Player, PaginationActions } from 'entities';
+import { Player, PaginationActions, ScoreController } from 'entities';
 import { IPlayer, useAppSelector } from 'shared';
 
 interface IScoreDisplay {
@@ -41,12 +31,6 @@ export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(55);
 
-  const handleToogleRace = () => {
-    SetNetworkRace((prev) => !prev);
-    setPage(0);
-    setRowsPerPage(55);
-  };
-
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
@@ -64,49 +48,13 @@ export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <ScoreTime />
-      <Box sx={{ display: 'flex', justifyContent: 'space-around', m: 1 }}>
-        <FormControlLabel
-          sx={{ margin: 0 }}
-          control={<Switch />}
-          label={
-            <Typography
-              sx={{
-                color: 'primary.main',
-                textTransform: 'uppercase',
-                fontSize: 14,
-              }}
-            >
-              {t('Network race')}
-            </Typography>
-          }
-          labelPlacement='start'
-          onChange={handleToogleRace}
-        />
-        <FormControlLabel
-          sx={{ '&:hover svg': { transform: 'rotate(180deg)' } }}
-          control={
-            <Button
-              variant='contained'
-              sx={{ ml: 1, height: 24, backgroundColor: 'primary.light' }}
-            >
-              <CachedIcon sx={{ transition: 'ease-in-out 0.3s' }} />
-            </Button>
-          }
-          label={
-            <Typography
-              sx={{
-                color: 'primary.main',
-                textTransform: 'uppercase',
-                fontSize: 14,
-              }}
-            >
-              {t('Update')}
-            </Typography>
-          }
-          labelPlacement='start'
-          onClick={() => setUpdateScore(true)}
-        />
-      </Box>
+
+      <ScoreController
+        SetNetworkRace={SetNetworkRace}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
+        setUpdateScore={setUpdateScore}
+      />
 
       <Divider sx={{ mb: 1 }} />
 
@@ -150,10 +98,11 @@ export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
           ActionsComponent={PaginationActions}
         />
       )}
+
       {isFetching ? (
         <Spinner />
       ) : (
-        <Box>
+        <>
           {(rowsPerPage > 0
             ? players.slice(
                 page * rowsPerPage,
@@ -163,7 +112,7 @@ export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
           ).map((player) => (
             <Player key={player.position} player={player} />
           ))}
-        </Box>
+        </>
       )}
     </Box>
   );

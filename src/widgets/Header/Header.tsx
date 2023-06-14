@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Toolbar } from '@mui/material';
 
-import { Logo, Navigation, Settings } from './components';
+import { Logo, Navigation, Settings } from 'entities';
 
 export const Header: FC = () => {
   return (

@@ -11,7 +11,7 @@ import {
 
 import { ReactComponent as RedStarLogo } from './assets/RedStar.svg';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { SocialMediaList } from './components/SocialMediaList/SocialMediaList';
+import { SocialMediaList } from 'entities';
 
 export const Footer: FC = () => {
   const { t } = useTranslation();
