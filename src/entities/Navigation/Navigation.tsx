@@ -15,6 +15,7 @@ export const Navigation: FC = () => {
       {NAVIGATION_LIST.map((item) => (
         <NavLink
           to={item.path}
+          end
           key={item.title}
           style={({ isActive }) => ({
             color: isActive

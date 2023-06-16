@@ -1,11 +1,14 @@
 import { FC } from 'react';
-import { Box, Paper } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { Box, Button, Divider, Link, Paper, Typography } from '@mui/material';
 
 import { Score } from 'widgets';
 import { Benefit } from 'entities';
-import { BENEFIT_LIST } from 'shared';
+import { BENEFIT_LIST, CHALLENGE_LIST } from 'shared';
 
 export const Leaderboard: FC = () => {
+  const { t } = useTranslation(['benefits']);
+
   return (
     <Box
       component='main'
@@ -25,7 +28,7 @@ export const Leaderboard: FC = () => {
         }}
       >
         {BENEFIT_LIST.map((benefit) => (
-          <Benefit benefit={benefit} />
+          <Benefit benefit={benefit} key={benefit.title} />
         ))}
       </Box>
       <Paper
@@ -41,10 +44,49 @@ export const Leaderboard: FC = () => {
       </Paper>
       <Box
         sx={{
+          position: 'sticky',
+          top: '20px',
           width: `calc(50% - 360px)`,
-          padding: '20px',
+          height: '100%',
         }}
-      ></Box>
+      >
+        <Paper
+          sx={{ padding: '20px', display: 'flex', flexDirection: 'column' }}
+        >
+          <Typography
+            variant='h5'
+            sx={{
+              margin: '10px',
+              color: 'primary.main',
+              textAlign: 'center',
+            }}
+          >
+            {t('challenges.title')}
+          </Typography>
+          <Divider>
+            <Typography
+              sx={{
+                fontSize: '12px',
+                textTransform: 'uppercase',
+                color: 'text.secondary',
+              }}
+            >
+              {t('challenges.subtitle')}
+            </Typography>
+          </Divider>
+          <Typography variant='body2' sx={{ margin: '10px 0' }}>
+            {t('challenges.description')}
+          </Typography>
+          {CHALLENGE_LIST.map((benefit) => (
+            <Benefit benefit={benefit} key={benefit.title} />
+          ))}
+          <Link href={''} sx={{ textAlign: 'center' }}>
+            <Button variant='contained' color='warning'>
+              {t('challenges.button')}
+            </Button>
+          </Link>
+        </Paper>
+      </Box>
     </Box>
   );
 };

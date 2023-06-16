@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { Suspense, useMemo, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme, PaletteMode } from '@mui/material';
 
@@ -27,14 +27,16 @@ const App = () => {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <Routes>
-          <Route path='/twister-races-new' element={<Layout />}>
-            <Route index element={<Leaderboard />} />
-            <Route path='registration' element={<Registration />} />
-            <Route path='prizes' element={<Prizes />} />
-            <Route path='login' element={<Login />} />
-          </Route>
-        </Routes>
+        <Suspense>
+          <Routes>
+            <Route path='/twister-races-new' element={<Layout />}>
+              <Route index element={<Leaderboard />} />
+              <Route path='registration' element={<Registration />} />
+              <Route path='prizes' element={<Prizes />} />
+              <Route path='login' element={<Login />} />
+            </Route>
+          </Routes>
+        </Suspense>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
