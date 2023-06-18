@@ -2,11 +2,14 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Box,
+  Divider,
   Link,
   SvgIcon,
   Toolbar,
   Tooltip,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 
 import { ReactComponent as RedStarLogo } from './assets/RedStar.svg';
@@ -16,16 +19,20 @@ import { SocialMediaList } from 'entities';
 export const Footer: FC = () => {
   const { t } = useTranslation();
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Toolbar
       component='footer'
       sx={{
-        justifyContent: 'space-between',
+        flexDirection: isMobile ? 'column' : 'row',
+        justifyContent: 'space-around',
         backgroundColor: 'background.paper',
-        mt: 'auto',
+        marginTop: 'auto',
       }}
     >
-      <Box>
+      <Box sx={{ textAlign: 'center', margin: isMobile ? '20px 0' : 0 }}>
         <Typography>{t('storo08 Twister Races')} © 2022</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography>{t('Supported by')}</Typography>
@@ -51,9 +58,19 @@ export const Footer: FC = () => {
         </Box>
       </Box>
 
+      <Divider orientation='horizontal' flexItem />
+
       <SocialMediaList />
 
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Divider orientation='horizontal' flexItem />
+
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          margin: isMobile ? '20px 0' : 0,
+        }}
+      >
         <Typography>{t('Developed by')}</Typography>
         <Link
           href='https://github.com/mshns'

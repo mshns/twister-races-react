@@ -4,6 +4,7 @@ export * from './hooks/redux';
 export { useLocalTime } from './hooks/useLocalTime';
 export { useLocalDate } from './hooks/useLocalDate';
 
+export { NAVIGATION_LIST } from './constants/navigationList';
 export { STORO_PRIZES } from './constants/storoPrizes';
 export { STORO_BONUSES } from './constants/storoBonuses';
 export { NETWORK_PRIZES } from './constants/networkPrizes';

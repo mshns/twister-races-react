@@ -1,9 +1,13 @@
 import { FC } from 'react';
-import { Toolbar } from '@mui/material';
+import { Toolbar, useMediaQuery, useTheme } from '@mui/material';
 
 import { Logo, Navigation, Settings } from 'entities';
+import { BurgerMenu } from 'widgets';
 
 export const Header: FC = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Toolbar
       component='header'
@@ -13,8 +17,14 @@ export const Header: FC = () => {
       }}
     >
       <Logo />
-      <Navigation />
-      <Settings />
+      {isMobile ? (
+        <BurgerMenu />
+      ) : (
+        <>
+          <Navigation />
+          <Settings />
+        </>
+      )}
     </Toolbar>
   );
 };

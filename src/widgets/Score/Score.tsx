@@ -13,7 +13,7 @@ export const Score: FC = () => {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ padding: '10px 20px' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={week} onChange={handleChange} variant='fullWidth'>
           <Tab value={'current'} label={t('Current leaderboard')} />
