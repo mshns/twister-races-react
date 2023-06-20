@@ -19,13 +19,16 @@ export const Registration: FC = () => {
     <Box
       component='main'
       sx={{
-        width: '680px',
+        maxWidth: '560px',
         margin: '20px auto',
         display: 'flex',
         flexDirection: 'column',
       }}
     >
-      <Typography variant='h4' sx={{ color: 'primary.main', mt: 4 }}>
+      <Typography
+        variant='h4'
+        sx={{ color: 'primary.main', mt: 4, padding: '0 20px' }}
+      >
         {t('Race registration')}
       </Typography>
       <Divider textAlign='right' sx={{ mb: 2 }}>
@@ -49,7 +52,10 @@ export const Registration: FC = () => {
       <Typography sx={{ m: 2 }}>{t('registration.part2')}</Typography>
       <Typography sx={{ m: 2 }}>{t('registration.part3')}</Typography>
 
-      <Typography variant='h4' sx={{ color: 'primary.main', mt: 4 }}>
+      <Typography
+        variant='h4'
+        sx={{ color: 'primary.main', mt: 4, padding: '0 20px' }}
+      >
         {t('Race rules')}
       </Typography>
       <Divider textAlign='right' sx={{ mb: 2 }}>

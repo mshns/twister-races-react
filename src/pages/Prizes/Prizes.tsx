@@ -24,13 +24,16 @@ export const Prizes: FC = () => {
     <Box
       component='main'
       sx={{
-        width: '680px',
+        maxWidth: '560px',
         margin: '20px auto',
         display: 'flex',
         flexDirection: 'column',
       }}
     >
-      <Typography variant='h4' sx={{ color: 'primary.main', mt: 4 }}>
+      <Typography
+        variant='h4'
+        sx={{ color: 'primary.main', mt: 4, padding: '0 20px' }}
+      >
         {t('Race prizes')}
       </Typography>
       <Divider textAlign='right' sx={{ mb: 2 }}>
@@ -43,7 +46,7 @@ export const Prizes: FC = () => {
 
       <TableContainer
         component={Paper}
-        sx={{ width: '360px', margin: '20px auto' }}
+        sx={{ width: '320px', margin: '20px auto' }}
       >
         <Table>
           <TableHead>
@@ -94,7 +97,10 @@ export const Prizes: FC = () => {
         </Table>
       </TableContainer>
 
-      <Typography variant='h4' sx={{ color: 'primary.main', mt: 4 }}>
+      <Typography
+        variant='h4'
+        sx={{ color: 'primary.main', mt: 4, padding: '0 20px' }}
+      >
         {t('Bonus tickets')}
       </Typography>
       <Divider textAlign='right' sx={{ mb: 2 }}>

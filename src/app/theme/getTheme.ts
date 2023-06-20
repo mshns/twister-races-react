@@ -10,8 +10,8 @@ export const getTheme = (mode: PaletteMode) => ({
             contrastText: '#fff',
           },
           secondary: {
-            main: '#cc4800',
-            contrastText: '#fff',
+            main: '#505050',
+            contrastText: '#000',
           },
           background: {
             default: '#eceeeb',

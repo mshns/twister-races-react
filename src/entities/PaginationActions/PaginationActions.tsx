@@ -52,15 +52,16 @@ export const PaginationActions = ({
   return (
     <Box
       sx={{
-        width: '50%',
+        width: { xs: '100%', md: '50%' },
         position: 'absolute',
-        right: 0,
-        top: '0px',
+        right: { xs: 0, md: '10px' },
+        top: { xs: '40px', md: 0 },
         display: 'flex',
         justifyContent: 'space-between',
       }}
     >
       <IconButton
+        color='primary'
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
         aria-label='first page'
@@ -68,6 +69,7 @@ export const PaginationActions = ({
         {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
+        color='primary'
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label='previous page'
@@ -79,6 +81,7 @@ export const PaginationActions = ({
         )}
       </IconButton>
       <IconButton
+        color='primary'
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label='next page'
@@ -90,6 +93,7 @@ export const PaginationActions = ({
         )}
       </IconButton>
       <IconButton
+        color='primary'
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label='last page'

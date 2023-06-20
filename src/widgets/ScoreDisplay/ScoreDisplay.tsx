@@ -50,6 +50,7 @@ export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
       <ScoreTime />
 
       <ScoreController
+        isNetworkRace={isNetworkRace}
         SetNetworkRace={SetNetworkRace}
         setPage={setPage}
         setRowsPerPage={setRowsPerPage}
@@ -59,12 +60,13 @@ export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
       <Divider sx={{ mb: 1 }} />
 
       {isFetching ? (
-        <Skeleton variant='rounded' width={640} height={60} />
+        <Skeleton variant='rounded' width='100%' height={60} />
       ) : (
         <TablePagination
           component={'div'}
           sx={{
-            width: 640,
+            width: '100%',
+            height: { xs: '82px', md: '54px' },
             '.MuiTablePagination-toolbar': {
               padding: '0 10px',
               flexWrap: 'wrap',
@@ -98,6 +100,8 @@ export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
           ActionsComponent={PaginationActions}
         />
       )}
+
+      <Divider sx={{ mb: 1 }} />
 
       {isFetching ? (
         <Spinner />

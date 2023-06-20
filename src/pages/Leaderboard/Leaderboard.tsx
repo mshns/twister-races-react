@@ -22,7 +22,7 @@ export const Leaderboard: FC = () => (
       ))}
     </SidebarWrapper>
 
-    <Paper component='section' sx={{ width: 700, margin: '10px' }}>
+    <Paper component='section' sx={{ width: {md: 700, xs: 350}, margin: '10px' }}>
       <Score />
     </Paper>
 
