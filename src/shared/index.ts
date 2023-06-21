@@ -16,3 +16,4 @@ export { range } from './helpers/range';
 export { getStoroPrize } from './helpers/getStoroPrize';
 export { getNetworkPrize } from './helpers/getNetworkPrize';
 export { getStoroBonus } from './helpers/getStoroBonus';
+export { isCurrentWeek } from './helpers/isCurrentWeek';

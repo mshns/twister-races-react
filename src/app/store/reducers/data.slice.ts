@@ -10,7 +10,7 @@ const initialState: IData = {
 };
 
 const dataSlice = createSlice({
-  name: 'storoPlayers',
+  name: 'data',
   initialState,
   reducers: {
     setStoroPlayers(state, action: PayloadAction<IPlayer[]>) {

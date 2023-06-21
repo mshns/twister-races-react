@@ -7,6 +7,7 @@ import {
   getStoroBonus,
   IPlayerApi,
   getNetworkPrize,
+  isCurrentWeek,
 } from 'shared';
 import { ScoreDisplay } from 'widgets';
 import {
@@ -14,7 +15,7 @@ import {
   setStoroPlayers,
   setNetworkPlayers,
   setFetching,
-} from 'app/store/reducers/DataSlice';
+} from 'app/store';
 
 export const ScoreFetching = ({ week }: { week: string }) => {
   const dispatch = useAppDispatch();
@@ -30,7 +31,9 @@ export const ScoreFetching = ({ week }: { week: string }) => {
         .then((players) => {
           const playerList: string[] = [];
           players.map((player: IPlayerDB) => {
-            playerList.push(player.nickname.current.toLowerCase());
+            week === 'current' || !isCurrentWeek(player.update)
+              ? playerList.push(player.nickname.current.toLowerCase())
+              : playerList.push(player.nickname.previous.toLowerCase());
           });
           return playerList;
         }),

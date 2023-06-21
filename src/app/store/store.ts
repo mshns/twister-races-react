@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import dataReducer from './reducers/DataSlice';
-import { redStarApi } from './reducers/ApiSlice';
+import dataReducer from './reducers/data.slice';
+import authReducer from './reducers/authorization.slice';
+import { redStarApi } from './reducers/api.slice';
 
 const rootReducer = combineReducers({
   dataReducer,
+  authReducer,
   [redStarApi.reducerPath]: redStarApi.reducer,
 });
 

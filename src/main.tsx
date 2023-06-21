@@ -10,6 +10,7 @@ import { setupStore } from 'app/store/store';
 const store = setupStore();
 
 import './app/i18next/i18n';
+import './app/firebase/firebase';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   // <React.StrictMode>

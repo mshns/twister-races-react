@@ -3,6 +3,7 @@ export { Logo } from './Logo/Logo';
 export { Navigation } from './Navigation/Navigation';
 export { PaginationActions } from './PaginationActions/PaginationActions';
 export { Player } from './Player/Player';
+export { PlayerDataBase } from './PlayerDataBase/PlayerDataBase';
 export { PrizeBonus } from './PrizeBonus/PrizeBonus';
 export { ScoreController } from './ScoreController/ScoreController';
 export { Settings } from './Settings/Settings';
