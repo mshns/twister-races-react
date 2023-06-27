@@ -1,4 +1,5 @@
 export { Benefit } from './Benefit/Benefit';
+export { CustomLink } from './CustomLink/CustomLink';
 export { Logo } from './Logo/Logo';
 export { Navigation } from './Navigation/Navigation';
 export { PaginationActions } from './PaginationActions/PaginationActions';

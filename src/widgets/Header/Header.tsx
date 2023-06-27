@@ -12,7 +12,7 @@ export const Header: FC = () => {
     <Toolbar
       component='header'
       sx={{
-        backgroundColor: 'background.paper',
+        backgroundColor: 'secondary.main',
         justifyContent: 'space-between',
       }}
     >

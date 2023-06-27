@@ -1,6 +1,11 @@
 import { FC } from 'react';
-import { Button, Divider, Link, Paper, Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
+import { Button, Divider, Typography } from '@mui/material';
+
+import { CustomLink } from 'entities';
+import { PROMO_LINK } from 'shared';
+
+import { BenefitWrapper } from './styled';
 
 interface IBenefit {
   benefit: {
@@ -16,20 +21,13 @@ export const Benefit: FC<IBenefit> = ({ benefit }) => {
   const { t } = useTranslation(['benefits']);
 
   return (
-    <Paper
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '20px',
-        ':not(:last-child)': { marginBottom: '20px' },
-      }}
-    >
+    <BenefitWrapper>
       <Typography
         variant='h5'
         sx={{
-          marginBottom: '10px',
           color: 'primary.main',
           textAlign: 'center',
+          marginBottom: '10px',
         }}
       >
         {t(benefit.title)}
@@ -47,20 +45,30 @@ export const Benefit: FC<IBenefit> = ({ benefit }) => {
         </Typography>
       </Divider>
 
-      <Typography variant='body2' sx={{ marginTop: '10px' }}>
-        {t(benefit.description)}
+      <Typography
+        variant='body2'
+        sx={{ marginTop: '10px', textAlign: 'center' }}
+      >
+        <Trans
+          i18nKey={t(benefit.description)}
+          components={{
+            strong: (
+              <Typography component='span' color='primary' fontSize='inherit' />
+            ),
+            promo: <CustomLink label='RedStar' href={PROMO_LINK} />,
+          }}
+        />
       </Typography>
 
       {benefit.link && benefit.button && (
-        <Link
+        <Button
           href={benefit.link}
-          sx={{ marginTop: '10px', textAlign: 'center' }}
+          variant='contained'
+          sx={{ margin: '10px auto 0' }}
         >
-          <Button variant='contained' color='warning'>
-            {t(benefit.button)}
-          </Button>
-        </Link>
+          {t(benefit.button)}
+        </Button>
       )}
-    </Paper>
+    </BenefitWrapper>
   );
 };

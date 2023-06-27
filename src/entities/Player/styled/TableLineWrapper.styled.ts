@@ -13,8 +13,10 @@ export const TableLineWrapper = styled(Paper, {
   backgroundColor: player.isAffiliate
     ? theme.palette.success.light
     : player.position % 2
-    ? theme.palette.info.dark
-    : theme.palette.info.light,
+    ? theme.palette.secondary.main
+    : theme.palette.secondary.contrastText,
+  transition: 'ease-in-out 0.2s',
+
   '&:hover': {
     backgroundColor: theme.palette.background.default,
   },

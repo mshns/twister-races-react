@@ -1,9 +1,10 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-
-import { Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import RefreshIcon from '@mui/icons-material/Refresh';
+
+import { ScoreControllerWrapper, SelectRaceButton } from './styled';
 
 interface IScoreController {
   isNetworkRace: boolean;
@@ -29,46 +30,33 @@ export const ScoreController: FC<IScoreController> = ({
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        margin: '10px 0',
-      }}
-    >
-      <Button
-        sx={{
-          width: { xs: '100%', md: '30%' },
-          marginBottom: { xs: '10px', md: 0 },
-          color: isNetworkRace ? 'secondary.main' : 'primary.main',
-        }}
+    <ScoreControllerWrapper>
+      <SelectRaceButton
+        isNetworkRace={isNetworkRace}
         variant='outlined'
         startIcon={<FormatListNumberedIcon />}
         onClick={() => handleToogleRace('private')}
       >
         {t('Private race')}
-      </Button>
-      <Button
-        sx={{
-          width: { xs: '100%', md: '30%' },
-          marginBottom: { xs: '10px', md: 0 },
-          color: isNetworkRace ? 'primary.main' : 'secondary.main',
-        }}
+      </SelectRaceButton>
+
+      <SelectRaceButton
+        isNetworkRace={!isNetworkRace}
         variant='outlined'
         startIcon={<FormatListNumberedIcon />}
         onClick={() => handleToogleRace('network')}
       >
         {t('Network race')}
-      </Button>
+      </SelectRaceButton>
+
       <Button
-        sx={{ width: { xs: '100%', md: '30%' }, color: 'secondary.main' }}
+        sx={{ width: { xs: '100%', md: '30%' }, color: 'text.secondary' }}
         variant='outlined'
         endIcon={<RefreshIcon />}
         onClick={() => setUpdateScore(true)}
       >
         {t('Update')}
       </Button>
-    </Box>
+    </ScoreControllerWrapper>
   );
 };

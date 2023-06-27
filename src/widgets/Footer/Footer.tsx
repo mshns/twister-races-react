@@ -28,7 +28,7 @@ export const Footer: FC = () => {
       sx={{
         flexDirection: isMobile ? 'column' : 'row',
         justifyContent: 'space-around',
-        backgroundColor: 'background.paper',
+        backgroundColor: 'secondary.main',
         marginTop: 'auto',
       }}
     >

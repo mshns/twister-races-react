@@ -15,7 +15,7 @@ import './app/firebase/firebase';
 createRoot(document.getElementById('root') as HTMLElement).render(
   // <React.StrictMode>
   <Provider store={store}>
-    <BrowserRouter basename='/twister-races-new'>
+    <BrowserRouter>
       <CssBaseline />
       <App />
     </BrowserRouter>

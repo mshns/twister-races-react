@@ -1,8 +1,10 @@
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Box, Tab, Tabs } from '@mui/material';
+import { Box } from '@mui/material';
 
 import { ScoreFetching } from 'features';
+
+import { ScoreTab, ScoreTabs } from './styled';
 
 export const Score: FC = () => {
   const { t } = useTranslation(['leaderboard']);
@@ -14,12 +16,10 @@ export const Score: FC = () => {
 
   return (
     <Box sx={{ padding: '10px 20px' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={week} onChange={handleChange} variant='fullWidth'>
-          <Tab value={'current'} label={t('Current leaderboard')} />
-          <Tab value={'previous'} label={t('Previous results')} />
-        </Tabs>
-      </Box>
+      <ScoreTabs value={week} onChange={handleChange} variant='fullWidth'>
+        <ScoreTab value={'current'} label={t('Current leaderboard')} />
+        <ScoreTab value={'previous'} label={t('Previous results')} />
+      </ScoreTabs>
 
       <ScoreFetching week={week} />
     </Box>

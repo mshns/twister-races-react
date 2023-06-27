@@ -4,14 +4,14 @@ export const BENEFIT_LIST = [
     subtitle: 'benefit1.subtitle',
     description: 'benefit1.description',
     button: 'benefit1.button',
-    link: '/registration',
+    link: '/twister-races/registration',
   },
   {
     title: 'benefit2.title',
     subtitle: 'benefit2.subtitle',
     description: 'benefit2.description',
     button: 'benefit2.button',
-    link: '/prizes',
+    link: '/twister-races/prizes',
   },
   {
     title: 'benefit3.title',

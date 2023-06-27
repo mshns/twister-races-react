@@ -13,6 +13,7 @@ export const Layout = () => {
         minHeight: '100vh',
         margin: '0 auto',
         backgroundColor: 'background.default',
+        userSelect: 'none',
       }}
     >
       <Header />

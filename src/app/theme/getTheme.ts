@@ -6,49 +6,51 @@ export const getTheme = (mode: PaletteMode) => ({
     ...(mode === 'light'
       ? {
           primary: {
-            main: '#cc4800',
-            contrastText: '#fff',
+            main: '#CC4800',
+            contrastText: '#FFF',
           },
           secondary: {
-            main: '#505050',
-            contrastText: '#000',
+            main: '#CCD6DD',
+            light: '#bdecb6',
+            contrastText: '#E1E8ED',
           },
           background: {
-            default: '#eceeeb',
-            paper: '#d1d5dc',
-          },
-          success: {
-            main: '#31C39750',
-          },
-          info: {
-            main: '#FFA270',
-            light: '#FFA27010',
-            dark: '#FFA27050',
+            default: '#FFF',
+            paper: '#F3F6F9',
           },
           text: {
-            primary: '#1c1c1c',
-            secondary: '#505050',
+            primary: '#0C1929',
+            secondary: '#405060',
           },
-          divider: '#bbb',
+          success: {
+            main: '#66BB6A',
+            light: '#E2F7DF',
+          },
+          divider: '#CDD2D7',
         }
       : {
           primary: {
-            main: '#cc4800',
-            contrastText: '#fff',
+            main: '#CC4800',
+            contrastText: '#FFF',
           },
           secondary: {
-            main: '#cc4800',
-            contrastText: '#fff',
+            main: '#292F33',
+            light: '#2F5D96',
+            contrastText: '#66757F',
           },
           background: {
-            default: '#000',
-            paper: '#000',
+            default: '#041E3C',
+            paper: '#091B2F',
           },
           text: {
-            primary: '#1c1c1c',
-            secondary: '#fff',
+            primary: '#B3BAC2',
+            secondary: '#B3BAC2',
           },
-          divider: '#000',
+          success: {
+            main: '#66BB6A',
+            light: '#E2F7DF',
+          },
+          divider: '#2F5D96',
         }),
   },
   typography: {

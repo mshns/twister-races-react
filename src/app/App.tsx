@@ -29,7 +29,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Suspense>
           <Routes>
-            <Route path='/' element={<Layout />}>
+            <Route path='/twister-races-new' element={<Layout />}>
               <Route index element={<Leaderboard />} />
               <Route path='registration' element={<Registration />} />
               <Route path='prizes' element={<Prizes />} />
