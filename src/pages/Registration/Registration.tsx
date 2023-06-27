@@ -1,16 +1,11 @@
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Avatar,
-  Box,
-  Button,
-  Divider,
-  Link,
-  Paper,
-  Typography,
-} from '@mui/material';
+import { Trans, useTranslation } from 'react-i18next';
+import { Box, Button, Paper, Typography } from '@mui/material';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import GavelIcon from '@mui/icons-material/Gavel';
+
+import { CustomLink, PageTitle } from 'entities';
+import { PROMO_LINKS, Paragraph } from 'shared';
 
 export const Registration: FC = () => {
   const { t } = useTranslation(['registration']);
@@ -25,48 +20,70 @@ export const Registration: FC = () => {
         flexDirection: 'column',
       }}
     >
-      <Typography
-        variant='h4'
-        sx={{ color: 'primary.main', mt: 4, padding: '0 20px' }}
-      >
-        {t('Race registration')}
-      </Typography>
-      <Divider textAlign='right' sx={{ mb: 2 }}>
-        <Avatar variant='rounded'>
-          <HowToRegIcon />
-        </Avatar>
-      </Divider>
+      <PageTitle title={t('Race registration')} icon={<HowToRegIcon />} />
 
       <Paper sx={{ p: 2, m: 2, textAlign: 'center' }}>
-        <Typography sx={{ m: 2 }}>{t('registration.part1')}</Typography>
-        <Link
-          href='https://c.rsppartners.com/clickthrgh?btag=a_9631b_75l_9'
-          sx={{ textAlign: 'center' }}
-        >
-          <Button variant='contained' sx={{ mb: 2 }}>
-            {t('Register for redstar')}
-          </Button>
-        </Link>
+        <Paragraph>{t('registration.part1')}</Paragraph>
+
+        <Button variant='contained' href={PROMO_LINKS.redstar} sx={{ m: 1 }}>
+          {t('Register for redstar')}
+        </Button>
       </Paper>
 
-      <Typography sx={{ m: 2 }}>{t('registration.part2')}</Typography>
-      <Typography sx={{ m: 2 }}>{t('registration.part3')}</Typography>
+      <Paragraph>
+        <Trans
+          i18nKey={t('registration.part2')}
+          components={{
+            strong: (
+              <Typography component='span' color='primary' fontSize='inherit' />
+            ),
+            vigorish: (
+              <CustomLink label='Vigorish.ru' href={PROMO_LINKS.vigorish} />
+            ),
+            telegram: (
+              <CustomLink label='Telegram' href={PROMO_LINKS.telegram} />
+            ),
+          }}
+        />
+      </Paragraph>
 
-      <Typography
-        variant='h4'
-        sx={{ color: 'primary.main', mt: 4, padding: '0 20px' }}
-      >
-        {t('Race rules')}
-      </Typography>
-      <Divider textAlign='right' sx={{ mb: 2 }}>
-        <Avatar variant='rounded'>
-          <GavelIcon />
-        </Avatar>
-      </Divider>
-      <Typography sx={{ m: 2 }}>{t('rules.part1')}</Typography>
-      <Typography sx={{ m: 2 }}>{t('rules.part2')}</Typography>
-      <Typography sx={{ m: 2 }}>{t('rules.part3')}</Typography>
-      <Typography sx={{ m: 2, mb: 4 }}>{t('rules.part4')}</Typography>
+      <Paragraph sx={{ m: 2 }}>{t('registration.part3')}</Paragraph>
+
+      <PageTitle title={t('Race rules')} icon={<GavelIcon />} />
+
+      <Paragraph>{t('rules.part1')}</Paragraph>
+
+      <Paragraph>
+        <Trans
+          i18nKey={t('rules.part2')}
+          components={{
+            strong: (
+              <Typography component='span' color='primary' fontSize='inherit' />
+            ),
+          }}
+        />
+      </Paragraph>
+
+      <Paragraph>{t('rules.part3')}</Paragraph>
+
+      <Paragraph>{t('rules.part4')}</Paragraph>
+
+      <Paragraph>
+        <Trans
+          i18nKey={t('rules.part5')}
+          components={{
+            strong: (
+              <Typography component='span' color='primary' fontSize='inherit' />
+            ),
+            vigorish: (
+              <CustomLink label='Vigorish.ru' href={PROMO_LINKS.vigorish} />
+            ),
+            telegram: (
+              <CustomLink label='Telegram' href={PROMO_LINKS.telegram} />
+            ),
+          }}
+        />
+      </Paragraph>
     </Box>
   );
 };

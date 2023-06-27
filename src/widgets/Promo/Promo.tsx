@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Button, Typography } from '@mui/material';
 
 import { Benefit, CustomLink } from 'entities';
-import { CHALLENGE_LIST, PROMO_LINK } from 'shared';
+import { CHALLENGE_LIST, PROMO_LINKS } from 'shared';
 
 import { PromoWrapper } from './styled';
 
@@ -29,7 +29,7 @@ export const Promo: FC = () => {
             strong: (
               <Typography component='span' color='primary' fontSize='inherit' />
             ),
-            promo: <CustomLink label='RedStar' href={PROMO_LINK} />,
+            promo: <CustomLink label='RedStar' href={PROMO_LINKS.redstar} />,
           }}
         />
       </Typography>

@@ -2,6 +2,7 @@ export { Benefit } from './Benefit/Benefit';
 export { CustomLink } from './CustomLink/CustomLink';
 export { Logo } from './Logo/Logo';
 export { Navigation } from './Navigation/Navigation';
+export { PageTitle } from './PageTitle/PageTitle';
 export { PaginationActions } from './PaginationActions/PaginationActions';
 export { Player } from './Player/Player';
 export { PlayerDataBase } from './PlayerDataBase/PlayerDataBase';

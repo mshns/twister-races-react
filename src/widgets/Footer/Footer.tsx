@@ -11,10 +11,11 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 import { ReactComponent as RedStarLogo } from './assets/RedStar.svg';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { SocialMediaList } from 'entities';
+import { PROMO_LINKS } from 'shared';
 
 export const Footer: FC = () => {
   const { t } = useTranslation();
@@ -37,7 +38,7 @@ export const Footer: FC = () => {
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography>{t('Supported by')}</Typography>
           <Link
-            href='https://c.rsppartners.com/clickthrgh?btag=a_9631b_75l_9'
+            href={PROMO_LINKS.redstar}
             sx={{ display: 'flex', textDecoration: 'none' }}
           >
             <Tooltip title={t('RedStar Poker')}>

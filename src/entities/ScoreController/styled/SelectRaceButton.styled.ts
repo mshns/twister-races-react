@@ -7,10 +7,6 @@ export const SelectRaceButton = styled(Button, {
     ? theme.palette.text.secondary
     : theme.palette.primary.main,
 
-  backgroundColor: isNetworkRace
-    ? theme.palette.background.paper
-    : theme.palette.background.default,
-
   [theme.breakpoints.down('md')]: {
     width: '100%',
     marginBottom: '10px',

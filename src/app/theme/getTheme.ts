@@ -34,9 +34,9 @@ export const getTheme = (mode: PaletteMode) => ({
             contrastText: '#FFF',
           },
           secondary: {
-            main: '#292F33',
+            main: '#041020',
             light: '#2F5D96',
-            contrastText: '#66757F',
+            contrastText: '#0a264c',
           },
           background: {
             default: '#041E3C',
@@ -48,7 +48,7 @@ export const getTheme = (mode: PaletteMode) => ({
           },
           success: {
             main: '#66BB6A',
-            light: '#E2F7DF',
+            light: '#253128',
           },
           divider: '#2F5D96',
         }),
