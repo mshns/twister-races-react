@@ -15,6 +15,7 @@ import EventBusyIcon from '@mui/icons-material/EventBusy';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 
 import { useAppSelector, useLocalDate, useLocalTime } from 'shared';
+
 import { TimeLineWrapper } from './styled';
 
 export const ScoreTime: FC = () => {
@@ -47,7 +48,7 @@ export const ScoreTime: FC = () => {
           </Typography>
         </Box>
         {isFetching ? (
-          <Skeleton variant='text' sx={{ fontSize: 16, width: 200 }} />
+          <Skeleton variant='text' sx={{ fontSize: 16, width: '60%' }} />
         ) : (
           <Typography variant='body2'>{startRace}</Typography>
         )}
@@ -72,7 +73,7 @@ export const ScoreTime: FC = () => {
           </Typography>
         </Box>
         {isFetching ? (
-          <Skeleton variant='text' sx={{ fontSize: 16, width: 200 }} />
+          <Skeleton variant='text' sx={{ fontSize: 16, width: '60%' }} />
         ) : (
           <Typography variant='body2'>{endRace}</Typography>
         )}
@@ -94,7 +95,7 @@ export const ScoreTime: FC = () => {
           <Typography sx={{ ml: 1, fontSize: 14 }}>{t('Updated')}</Typography>
         </Box>
         {isFetching ? (
-          <Skeleton variant='text' sx={{ fontSize: 16, width: 200 }} />
+          <Skeleton variant='text' sx={{ fontSize: 16, width: '60%' }} />
         ) : (
           <Typography variant='body2'>{lastUpdate}</Typography>
         )}

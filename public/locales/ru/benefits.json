@@ -19,7 +19,6 @@
 
   "challenges": {
     "title": "Специальные акции",
-    "subtitle": "Для игроков storo",
     "description": "Игроки, зарегистрированные на <promo>RedStar</promo> с промокодом storo08, помимо приватной гонки могут <strong>участвовать в специальных акциях</strong>.",
     "button": "Участвовать в акциях",
     "link": "/redstar"

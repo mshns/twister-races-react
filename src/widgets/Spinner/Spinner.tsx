@@ -38,18 +38,22 @@ export const Spinner = () => {
 
   return (
     <Box
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: { md: '54px', xs: '82px' },
+      }}
     >
-      <Box sx={{ width: '60%', m: 2 }}>
+      <Box sx={{ width: '60%', m: 1 }}>
         <LinearProgress
           variant='buffer'
           value={progress}
           valueBuffer={buffer}
         />
       </Box>
-      <Typography>
-        {t('Loading. Please wait.')}
-      </Typography>
+      <Typography>{t('Loading. Please wait.')}</Typography>
     </Box>
   );
 };

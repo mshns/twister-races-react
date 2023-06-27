@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import { Box, Divider, Skeleton, TablePagination } from '@mui/material';
+
 import { ScoreTime, Spinner } from 'widgets';
 import { Player, PaginationActions, ScoreController } from 'entities';
 import { IPlayer, useAppSelector } from 'shared';
@@ -60,7 +60,7 @@ export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
       <Divider sx={{ mb: 1 }} />
 
       {isFetching ? (
-        <Skeleton variant='rounded' width='100%' height={60} />
+        <Spinner />
       ) : (
         <TablePagination
           component={'div'}
@@ -104,7 +104,15 @@ export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
       <Divider sx={{ mb: 1 }} />
 
       {isFetching ? (
-        <Spinner />
+        Array(10)
+          .fill('')
+          .map((_item, index) => (
+            <Skeleton
+              variant='rounded'
+              sx={{ height: '56px', marginBottom: '10px' }}
+              key={index}
+            />
+          ))
       ) : (
         <>
           {(rowsPerPage > 0

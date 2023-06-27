@@ -1,0 +1,13 @@
+{
+  "Race prizes": "Race prize money",
+
+  "Position": "Places",
+  "Prize": "Prize tickets",
+
+  "Bonus tickets": "Bonus tickets",
+
+  "prizes": {
+    "part1": "The race prize fund is €5000 per month! The prize pool of each week is distributed among the participants who managed to enter the TOP 55 of the race.",
+    "part2": "Permanent promotion in progress! Members who reach 50K points in a week will receive an additional €50 Twister ticket, 100K points will earn two €50 Twister tickets."
+  }
+}

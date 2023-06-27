@@ -9,6 +9,7 @@ import {
   getNetworkPrize,
   isCurrentWeek,
 } from 'shared';
+
 import { ScoreDisplay } from 'widgets';
 import {
   setRaceTime,
