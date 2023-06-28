@@ -32,6 +32,7 @@ export const ScoreFetching = ({ week }: { week: string }) => {
         .then((players) => {
           const playerList: string[] = [];
           players.map((player: IPlayerDB) => {
+            console.log(player.nickname, isCurrentWeek(player.update))
             week === 'current' || !isCurrentWeek(player.update)
               ? playerList.push(player.nickname.current.toLowerCase())
               : playerList.push(player.nickname.previous.toLowerCase());
