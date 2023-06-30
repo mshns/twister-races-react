@@ -27,12 +27,11 @@ export const ScoreFetching = ({ week }: { week: string }) => {
     setUpdateScore(false);
 
     Promise.all([
-      fetch('https://twister-races.onrender.com/players')
+      fetch(`${import.meta.env.VITE_SERVER_URL}/players`)
         .then((response) => response.json())
         .then((players) => {
           const playerList: string[] = [];
           players.map((player: IPlayerDB) => {
-            console.log(player.nickname, isCurrentWeek(player.update))
             week === 'current' || !isCurrentWeek(player.update)
               ? playerList.push(player.nickname.current.toLowerCase())
               : playerList.push(player.nickname.previous.toLowerCase());
@@ -40,7 +39,7 @@ export const ScoreFetching = ({ week }: { week: string }) => {
           return playerList;
         }),
 
-      fetch(`https://twister-races.onrender.com/${week}`)
+      fetch(`${import.meta.env.VITE_SERVER_URL}/${week}`)
         .then((response) => response.json())
         .then((playerListXML) => {
           const networkPlayerList: IPlayerApi[] = [];

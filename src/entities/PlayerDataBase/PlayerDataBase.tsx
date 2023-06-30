@@ -1,4 +1,4 @@
-import { Box, IconButton, TextField } from '@mui/material';
+import { Box, IconButton, TextField, Tooltip } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import { IPlayerDB } from 'shared';
@@ -13,7 +13,7 @@ export const PlayerDataBase: FC<IPlayerDataBase> = ({ player, setUpdate }) => {
   const [nickname, setNickname] = useState(player.nickname.current);
 
   const handleEdit = () => {
-    fetch(`https://twister-races.onrender.com/players/${player._id}`, {
+    fetch(`${import.meta.env.VITE_SERVER_URL}/players/${player._id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -29,7 +29,7 @@ export const PlayerDataBase: FC<IPlayerDataBase> = ({ player, setUpdate }) => {
   };
 
   const handleDelete = () => {
-    fetch(`https://twister-races.onrender.com/players/${player._id}`, {
+    fetch(`${import.meta.env.VITE_SERVER_URL}/players/${player._id}`, {
       method: 'DELETE',
     }).then(() => setUpdate(true));
   };
@@ -49,12 +49,26 @@ export const PlayerDataBase: FC<IPlayerDataBase> = ({ player, setUpdate }) => {
         value={nickname}
         onChange={(event) => setNickname(event.target.value)}
       />
-      <IconButton aria-label='edit' size='large' onClick={handleEdit}>
-        <EditIcon />
-      </IconButton>
-      <IconButton aria-label='delete' size='large' onClick={handleDelete}>
-        <DeleteForeverIcon />
-      </IconButton>
+      <Tooltip title='Изменить nickname игрока'>
+        <IconButton
+          aria-label='edit'
+          size='large'
+          color='success'
+          onClick={handleEdit}
+        >
+          <EditIcon color='success' />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title='Удалить игрока из базы'>
+        <IconButton
+          aria-label='delete'
+          size='large'
+          color='error'
+          onClick={handleDelete}
+        >
+          <DeleteForeverIcon color='error' />
+        </IconButton>
+      </Tooltip>
     </Box>
   );
 };
