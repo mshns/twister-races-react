@@ -1,0 +1,1 @@
+export {TableLineWrapper} from './TableLineWrapper.styled'
