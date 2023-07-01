@@ -14,7 +14,7 @@ export const Layout = () => {
         margin: '0 auto',
         backgroundColor: 'background.default',
         userSelect: 'none',
-        color: 'text.primary'
+        color: 'text.primary',
       }}
     >
       <Header />

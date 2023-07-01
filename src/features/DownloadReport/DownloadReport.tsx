@@ -138,5 +138,9 @@ export const DownloadReport: FC = () => {
       });
   };
 
-  return <Button variant='contained' onClick={downloadTextFile}>Скачать отчёт</Button>;
+  return (
+    <Button variant='contained' onClick={downloadTextFile}>
+      Скачать отчёт
+    </Button>
+  );
 };

@@ -6,5 +6,5 @@ import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths(), svgr()],
-  base: '/twister-races-new'
+  base: '/twister-races'
 });

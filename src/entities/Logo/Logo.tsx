@@ -6,7 +6,7 @@ import { LogoIcon, LogoTitle, LogoWrapper } from './styled';
 
 export const Logo: FC = () => {
   return (
-    <LogoWrapper href='/twister-races-new'>
+    <LogoWrapper href='/twister-races'>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <LogoIcon variant='rounded'>
           <SportsScoreIcon />
