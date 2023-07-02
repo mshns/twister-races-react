@@ -20,15 +20,16 @@ export const AddPlayer: FC<IAddPlayer> = ({ setUpdate }) => {
         login: newLogin,
         nickname: {
           current: newNickname,
-          previous: newNickname,
         },
         update: new Date(),
       }),
-    }).then(() => {
-      setUpdate(true);
-      setNewLogin('');
-      setNewNickname('');
-    });
+    })
+      .then(() => {
+        setUpdate(true);
+        setNewLogin('');
+        setNewNickname('');
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

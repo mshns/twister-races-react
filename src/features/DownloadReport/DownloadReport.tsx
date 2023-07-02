@@ -33,7 +33,8 @@ export const DownloadReport: FC = () => {
                   login: player.login,
                   nickname: player.nickname.current.toLowerCase(),
                 })
-              : playerList.push({
+              : player.nickname.previous &&
+                playerList.push({
                   login: player.login,
                   nickname: player.nickname.previous.toLowerCase(),
                 });

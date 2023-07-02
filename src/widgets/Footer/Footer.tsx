@@ -74,7 +74,7 @@ export const Footer: FC = () => {
       >
         <Typography>{t('Developed by')}</Typography>
         <Link
-          href='https://github.com/mshns'
+          href='https://github.com/mshns/twister-races-react'
           sx={{ display: 'flex', textDecoration: 'none' }}
         >
           <Tooltip title={t('github.con/mshns')}>
