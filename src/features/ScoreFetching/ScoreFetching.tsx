@@ -43,32 +43,26 @@ export const ScoreFetching = ({ week }: { week: string }) => {
       fetch(`${import.meta.env.VITE_SERVER_URL}/${week}`)
         .then((response) => response.json())
         .then((playerListXML) => {
-          const networkPlayerList: IPlayerApi[] = [];
+          const networkPlayerList: IPlayerApi[] = [],
+            updateTime: string = playerListXML.report.updated_at,
+            startRace: string = playerListXML.report.race_start,
+            endRace: string = playerListXML.report.race_end;
 
-          const parser = new DOMParser(),
-            XML = parser.parseFromString(playerListXML, 'text/xml'),
-            report = XML.getElementsByTagName('report'),
-            updateTime = report[0].getAttribute('updated_at') as string,
-            startRace = report[0].getAttribute('race_start') as string,
-            endRace = report[0].getAttribute('race_end') as string,
-            rows = Array.prototype.slice.call(XML.getElementsByTagName('row'));
+          playerListXML.report.row.map(
+            (row: { column: [number, string, number, string] }) => {
+              const position = row.column[0],
+                nickname = row.column[1],
+                points = row.column[2];
 
-          rows.map((row) => {
-            const position =
-                row.getElementsByTagName('column')[0].lastChild?.nodeValue,
-              nickname =
-                row.getElementsByTagName('column')[1].lastChild?.nodeValue,
-              points =
-                row.getElementsByTagName('column')[2].lastChild?.nodeValue;
-
-            if (points > 0) {
-              networkPlayerList.push({
-                position: Number(position),
-                nickname: nickname,
-                points: Number(points),
-              });
+              if (points > 0) {
+                networkPlayerList.push({
+                  position: Number(position),
+                  nickname: nickname.toString(),
+                  points: Number(points),
+                });
+              }
             }
-          });
+          );
 
           return { updateTime, startRace, endRace, networkPlayerList };
         }),

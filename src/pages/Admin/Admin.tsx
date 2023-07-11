@@ -20,7 +20,6 @@ export const Admin: FC = () => {
 
   return isAdmin ? (
     <Box component='main'>
-
       <DataBase />
     </Box>
   ) : (

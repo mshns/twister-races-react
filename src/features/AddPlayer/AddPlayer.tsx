@@ -23,13 +23,11 @@ export const AddPlayer: FC<IAddPlayer> = ({ setUpdate }) => {
         },
         update: new Date(),
       }),
-    })
-      .then(() => {
-        setUpdate(true);
-        setNewLogin('');
-        setNewNickname('');
-      })
-      .catch((error) => console.log(error));
+    }).then(() => {
+      setUpdate(true);
+      setNewLogin('');
+      setNewNickname('');
+    });
   };
 
   return (
