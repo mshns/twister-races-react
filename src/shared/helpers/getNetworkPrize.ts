@@ -37,7 +37,7 @@ export const getNetworkPrize = (position: number) => {
     case range(101, 150).includes(position):
       prize = NETWORK_PRIZES.step11;
       break;
-    case range(151, 251).includes(position):
+    case range(151, 250).includes(position):
       prize = NETWORK_PRIZES.step12;
       break;
     default:
