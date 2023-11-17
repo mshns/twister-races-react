@@ -33,5 +33,10 @@
     "title": "Heads-Up Challenge",
     "subtitle": "Фрироллы с баунти",
     "description": "Каждую пятницу на <promo>RedStar</promo> проходят фрироллы, в которых <strong>разыгрываются билеты на твиcтеры и баунти</strong> за выбивание storo08."
+  },
+  "challenge3": {
+    "title": "storo08 Race Chase",
+    "subtitle": "Ежемесячный Рейкбек",
+    "description": "Приватная акция позволяет активных игрокам <promo>RedStar</promo> ежемесячно получать <strong>дополнительный рейкбек 5%</strong>!"
   }
 }
