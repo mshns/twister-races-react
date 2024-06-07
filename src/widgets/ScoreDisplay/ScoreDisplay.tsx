@@ -1,9 +1,8 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Box, Divider, Skeleton, TablePagination } from '@mui/material';
+import { Box, Divider, Skeleton } from '@mui/material';
 
-import { ScoreTime, Spinner } from 'widgets';
-import { Player, PaginationActions, ScoreController } from 'entities';
+import { ScorePagination, ScoreTime, Spinner } from 'widgets';
+import { Player, ScoreController } from 'entities';
 import { IPlayer, useAppSelector } from 'shared';
 
 interface IScoreDisplay {
@@ -11,7 +10,6 @@ interface IScoreDisplay {
 }
 
 export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
-  const { t } = useTranslation(['leaderboard']);
   const isFetching = useAppSelector((state) => state.dataReducer.isFetching);
 
   const storoPlayers = useAppSelector(
@@ -31,20 +29,6 @@ export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(55);
 
-  const handleChangePage = (
-    _event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <ScoreTime />
@@ -62,42 +46,12 @@ export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
       {isFetching ? (
         <Spinner />
       ) : (
-        <TablePagination
-          component={'div'}
-          sx={{
-            width: '100%',
-            height: { xs: '82px', md: '54px' },
-            '.MuiTablePagination-toolbar': {
-              padding: '0 10px',
-              flexWrap: 'wrap',
-            },
-            '.MuiTablePagination-selectLabel': { order: 0, margin: 0 },
-            '.MuiTablePagination-select': { order: 1, padding: 0 },
-            '.MuiTablePagination-displayedRows': {
-              order: 3,
-              width: '100%',
-              marginTop: 0,
-            },
-          }}
-          rowsPerPageOptions={[
-            10,
-            55,
-            100,
-            250,
-            { label: t('All'), value: -1 },
-          ]}
-          count={players.length}
-          rowsPerPage={rowsPerPage}
+        <ScorePagination
           page={page}
-          labelRowsPerPage={t('Rows per page')}
-          labelDisplayedRows={({ from, to, count }) =>
-            `${t('Displaying places')} ${from} ${t('to')} ${to} ${t(
-              'of'
-            )} ${count}`
-          }
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          ActionsComponent={PaginationActions}
+          setPage={setPage}
+          rowsPerPage={rowsPerPage}
+          setRowsPerPage={setRowsPerPage}
+          players={players}
         />
       )}
 
@@ -124,6 +78,19 @@ export const ScoreDisplay: FC<IScoreDisplay> = ({ setUpdateScore }) => {
           ).map((player) => (
             <Player key={player.position} player={player} />
           ))}
+        </>
+      )}
+
+      {!isFetching && (
+        <>
+          <Divider sx={{ margin: '10px 0' }} />
+          <ScorePagination
+            page={page}
+            setPage={setPage}
+            rowsPerPage={rowsPerPage}
+            setRowsPerPage={setRowsPerPage}
+            players={players}
+          />
         </>
       )}
     </Box>

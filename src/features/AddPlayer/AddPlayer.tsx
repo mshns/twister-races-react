@@ -20,7 +20,6 @@ export const AddPlayer: FC<IAddPlayer> = ({ setUpdate }) => {
         login: newLogin,
         nickname: {
           current: newNickname,
-          previous: newNickname,
         },
         update: new Date(),
       }),

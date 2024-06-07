@@ -20,10 +20,6 @@ export const DataBase: FC = () => {
       });
   }, [update]);
 
-  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
-  };
-
   const searchPlayer = (search: string) => {
     return search
       ? players.filter(
@@ -32,6 +28,15 @@ export const DataBase: FC = () => {
             player.nickname.current.toLowerCase().includes(search.toLowerCase())
         )
       : players;
+  };
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+    setPage((prev) => (prev === 1 ? prev : 1));
+  };
+
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
   };
 
   return (
@@ -75,7 +80,7 @@ export const DataBase: FC = () => {
           label='Поиск игрока'
           variant='standard'
           value={search}
-          onChange={(event) => setSearch(event?.target.value)}
+          onChange={handleSearch}
         />
 
         <Box
