@@ -12,5 +12,5 @@ export const STORO_PRIZE_FUND = [
   { position: '11 - 14 places', prize: '4x Twister €5' },
   { position: '15 - 30 places', prize: '3x Twister €5' },
   { position: '31 - 49 places', prize: '2x Twister €5' },
-  { position: '50 - 55 places', prize: '1x Twister €5' },
+  { position: '50 - 65 places', prize: '1x Twister €5' },
 ];

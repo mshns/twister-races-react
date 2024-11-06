@@ -73,7 +73,7 @@ export const DownloadReport: FC = () => {
         let position = 1;
 
         networkPlayerList.forEach((playerNetwork) => {
-          if (position < 56) {
+          if (position < 66) {
             playerList.map((playerStoro) => {
               if (
                 playerStoro.nickname === playerNetwork.nickname.toLowerCase()

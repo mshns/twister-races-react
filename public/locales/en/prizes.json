@@ -14,12 +14,12 @@
   "11 - 14 places": "11 - 14 places",
   "15 - 30 places": "15 - 30 places",
   "31 - 49 places": "31 - 49 places",
-  "50 - 55 places": "50 - 55 places",
+  "50 - 65 places": "50 - 65 places",
 
   "Bonus tickets": "Bonus tickets",
 
   "prizes": {
-    "part1": "The race prize fund is <strong>€5000 per month</strong>! The prize pool of each week is distributed among the participants who managed to enter the <strong>TOP 55</strong> of the race.",
+    "part1": "The race prize fund is <strong>€5200 per month</strong>! The prize pool of each week is distributed among the participants who managed to enter the <strong>TOP 65</strong> of the race.",
     "part2": "Permanent <strong>bonus</strong> in progress! Members who reach 50K points in a week will receive an additional €50 Twister ticket, 100K points will earn <strong>two €50 Twister tickets</strong>."
   }
 }

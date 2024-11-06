@@ -43,7 +43,7 @@ export const getStoroPrize = (position: number) => {
     case range(31, 49).includes(position):
       prize = STORO_PRIZES.step13;
       break;
-    case range(50, 55).includes(position):
+    case range(50, 65).includes(position):
       prize = STORO_PRIZES.step14;
       break;
     default:
